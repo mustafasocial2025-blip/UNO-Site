@@ -195,6 +195,25 @@
   position: relative; width: 100%; height: 100%; min-height: 420px;
   border-radius: 20px; overflow: hidden; background: #0b1230cc; border: 1px solid #ffffff20;
 }
+.kmt-stage { position:absolute; inset:0; overflow:hidden; background:radial-gradient(circle at 50% 34%,#0d54c9 0%,#071b55 44%,#030a27 100%); }
+.kmt-stage::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none; background:radial-gradient(circle at 50% 48%,transparent 20%,#0207198c 100%),linear-gradient(120deg,#2d83ff24,transparent 38%,#915bff1f); }
+.kmt-stage canvas { position:absolute; inset:0; z-index:1; width:100%; height:100%; display:block; cursor:grab; }
+.kmt-stage canvas:active { cursor:grabbing; }
+.kmt-reference-image { position:absolute; inset:-2%; z-index:1; width:104%; height:104%; object-fit:contain; object-position:center; transition:transform .12s ease-out; will-change:transform; }
+.kmt-head-layer { z-index:2; clip-path:polygon(33% 0,67% 0,65% 34%,35% 34%); transform-origin:50% 18%; }
+.kmt-stage.is-live .kmt-reference-image:first-of-type { filter:brightness(.8) saturate(.92); }
+.kmt-stage.is-live .kmt-head-layer { filter:brightness(1.08) saturate(1.08) drop-shadow(0 12px 18px #00164e99); }
+.kmt-stage.is-3d .kmt-reference-image, .kmt-stage.is-3d .kmt-eye-lid { display:none; }
+.kmt-eye-lid { position:absolute; z-index:3; top:14.7%; width:2.9%; height:0; border-radius:50%; background:#07143c; box-shadow:0 0 8px #0eeaff; transform:translateY(-50%); animation:kmtBlink 4.8s infinite; pointer-events:none; }
+.kmt-eye-lid.left { left:46.2%; } .kmt-eye-lid.right { right:46.2%; }
+@keyframes kmtBlink { 0%,45%,49%,100%{height:0} 47%{height:7%} }
+.kmt-label { position:absolute; z-index:3; left:18px; bottom:18px; display:flex; flex-direction:column; gap:3px; pointer-events:none; }
+.kmt-label strong { color:#fff; font:900 18px/1 Arial; letter-spacing:.7px; }
+.kmt-label span { color:#8eeeff; font:700 10px/1.2 Arial; letter-spacing:1.6px; text-transform:uppercase; }
+.kmt-live { position:absolute; z-index:3; right:16px; top:16px; display:flex; align-items:center; gap:7px; padding:7px 11px; border-radius:999px; color:#bffaff; background:#06143dbd; border:1px solid #55eaff55; font:700 9px Arial; letter-spacing:1.2px; pointer-events:none; }
+.kmt-live::before { content:''; width:7px; height:7px; border-radius:50%; background:#34f4ff; box-shadow:0 0 12px #34f4ff; animation:kmtPulse 1.7s ease-in-out infinite; }
+.kmt-hint { position:absolute; z-index:3; right:16px; bottom:18px; color:#c6d6ff; font:600 10px Arial; letter-spacing:.4px; opacity:.75; pointer-events:none; }
+@keyframes kmtPulse { 50% { opacity:.35; transform:scale(.72); } }
 .shot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
 .shot.on { opacity: 1; pointer-events: auto; }
 .placeholder-img { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; background: linear-gradient(135deg,#16225a,#0b1638); color: #93a6e6; font: 700 12px Arial; letter-spacing: 1px; text-align: center; padding: 20px; }
@@ -382,13 +401,14 @@
         <div class="page right">
           <div class="book-imgs">
             <div class="img-card" id="img-card">
-              <span class="img-tag" id="shot-tag"></span>
-              <span class="shot-count" id="shot-count"></span>
-              <div class="shot on" data-shot="0"><div class="placeholder-img"><div class="icon">▦</div>Real screenshot 1 goes here</div></div>
-              <div class="shot" data-shot="1"><div class="placeholder-img"><div class="icon">▤</div>Real screenshot 2 goes here</div></div>
-              <button class="shot-arrow prev" id="shot-prev" aria-label="Previous screenshot">‹</button>
-              <button class="shot-arrow next" id="shot-next" aria-label="Next screenshot">›</button>
-              <div class="shot-dots"><span class="on"></span><span></span></div>
+              <div class="kmt-stage" id="kmt-stage" role="img" aria-label="Interactive 3D KMT AI robotic Pharaoh">
+                <img class="kmt-reference-image" src="./kmt-fullbody-v1.png" alt="Full-body KMT AI robotic Pharaoh">
+                <img class="kmt-reference-image kmt-head-layer" src="./kmt-fullbody-v1.png" alt="">
+                <span class="kmt-eye-lid left"></span><span class="kmt-eye-lid right"></span>
+                <div class="kmt-live">2.5D LIVE PREVIEW</div>
+                <div class="kmt-label"><strong>KMT AI</strong><span>UNO intelligent assistant</span></div>
+                <div class="kmt-hint">Move your cursor</div>
+              </div>
             </div>
           </div>
         </div>
@@ -503,28 +523,12 @@ const pickerCards = pickerRow.querySelectorAll('.picker-card');
 
 const bookHeadline = document.getElementById('book-headline');
 const bookDesc = document.getElementById('book-desc');
-const shotTag = document.getElementById('shot-tag');
-const shotCount = document.getElementById('shot-count');
-const shots = document.querySelectorAll('.shot');
-const dots = document.querySelectorAll('.shot-dots span');
-let shotIdx = 0;
-
 function selectService(i) {
   const s = services[i];
   pickerCards.forEach((c, ci) => c.classList.toggle('active', ci === i));
   bookHeadline.textContent = s.title;
   bookDesc.textContent = s.desc;
-  shotIdx = 0;
-  renderShot();
 }
-function renderShot() {
-  shots.forEach(sh => sh.classList.toggle('on', Number(sh.dataset.shot) === shotIdx));
-  dots.forEach((d, i) => d.classList.toggle('on', i === shotIdx));
-  shotTag.textContent = shotIdx === 0 ? 'DEMO 1 — OVERVIEW' : 'DEMO 2 — DETAIL';
-  shotCount.textContent = (shotIdx + 1) + ' / ' + shots.length;
-}
-document.getElementById('shot-next').addEventListener('click', () => { shotIdx = (shotIdx + 1) % shots.length; renderShot(); });
-document.getElementById('shot-prev').addEventListener('click', () => { shotIdx = (shotIdx - 1 + shots.length) % shots.length; renderShot(); });
 
 const pickerPrev = document.getElementById('picker-prev');
 const pickerNext = document.getElementById('picker-next');
@@ -540,5 +544,192 @@ window.addEventListener('resize', updateArrows);
 selectService(2); // default to AI Solutions
 updateArrows();
 </script><script>document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>document.querySelector('.hero-contact').showModal()));</script>
-<dialog class="hero-contact hero-work-dialog"><h2>Our work</h2><p>Project case studies are being prepared. Explore our services to see what UNO can build.</p><form method="dialog"><button>Close</button></form></dialog><script>document.querySelector('[data-work]').addEventListener('click',()=>document.querySelector('.hero-work-dialog').showModal());</script></body>
+<dialog class="hero-contact hero-work-dialog"><h2>Our work</h2><p>Project case studies are being prepared. Explore our services to see what UNO can build.</p><form method="dialog"><button>Close</button></form></dialog><script>document.querySelector('[data-work]').addEventListener('click',()=>document.querySelector('.hero-work-dialog').showModal());</script>
+<script>
+(() => {
+  const stage=document.getElementById('kmt-stage');
+  const body=stage.querySelector('.kmt-reference-image:first-of-type');
+  const head=stage.querySelector('.kmt-head-layer');
+  stage.classList.add('is-live');
+  stage.addEventListener('pointermove',e=>{
+    const r=stage.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    body.style.transform=`translate(${x*8}px,${y*6}px) rotate(${x*0.8}deg) scale(1.025)`;
+    head.style.transform=`translate(${x*20}px,${y*16}px) rotate(${x*2.4}deg) scale(1.035)`;
+  });
+  stage.addEventListener('pointerleave',()=>{ body.style.transform='scale(1.025)'; head.style.transform='scale(1.035)'; });
+})();
+</script>
+<script type="module">
+import * as THREE from './three.module.js';
+
+const stage = document.getElementById('kmt-stage');
+stage.classList.add('is-3d');
+stage.querySelector('.kmt-live').textContent='INTERACTIVE 3D';
+stage.querySelector('.kmt-hint').textContent='Click: wave · double-click: walk · drag: turn';
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(34, 1, .1, 100);
+camera.position.set(0, -1.2, 16.4);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setClearColor(0x000000, 0);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+stage.prepend(renderer.domElement);
+
+const gold = new THREE.MeshStandardMaterial({ color:0xf5a81c, metalness:.86, roughness:.22 });
+const goldLight = new THREE.MeshStandardMaterial({ color:0xffd15a, metalness:.78, roughness:.19 });
+const blue = new THREE.MeshStandardMaterial({ color:0x0649d8, metalness:.72, roughness:.2 });
+const dark = new THREE.MeshStandardMaterial({ color:0x020820, metalness:.55, roughness:.16 });
+const cyan = new THREE.MeshStandardMaterial({ color:0x10eaff, emissive:0x079dff, emissiveIntensity:2.7, metalness:.25, roughness:.12 });
+const jointBlue = new THREE.MeshStandardMaterial({ color:0x0864e8, emissive:0x032a8a, emissiveIntensity:.8, metalness:.62, roughness:.2 });
+
+scene.add(new THREE.HemisphereLight(0x72baff, 0x020616, 2.5));
+const key = new THREE.DirectionalLight(0xffffff, 5.2); key.position.set(3, 5, 6); scene.add(key);
+const rim = new THREE.PointLight(0x286dff, 28, 16); rim.position.set(-4, 1, 3); scene.add(rim);
+const warm = new THREE.PointLight(0xffa21d, 18, 12); warm.position.set(3, -1, 3); scene.add(warm);
+
+const robot = new THREE.Group();
+robot.position.y = -.45;
+scene.add(robot);
+
+const torso = new THREE.Mesh(new THREE.CapsuleGeometry(1.02, 1.18, 10, 24), gold);
+torso.scale.set(1.12, 1.02, .63); torso.position.y = -1.92; robot.add(torso);
+const chest = new THREE.Mesh(new THREE.SphereGeometry(.92, 32, 20), dark);
+chest.scale.set(1.12, .94, .44); chest.position.set(0,-1.57,.68); robot.add(chest);
+const chestGem = new THREE.Mesh(new THREE.SphereGeometry(.3,24,16), cyan);
+chestGem.position.set(0,-1.38,1.09); robot.add(chestGem);
+const chestGemRim = new THREE.Mesh(new THREE.TorusGeometry(.36,.09,12,36),goldLight);
+chestGemRim.position.set(0,-1.38,1.08); robot.add(chestGemRim);
+const coreLine = new THREE.Mesh(new THREE.BoxGeometry(.12,.62,.08),cyan);
+coreLine.position.set(0,-1.94,1.02);
+const collar = new THREE.Mesh(new THREE.TorusGeometry(1.02,.22,14,48,Math.PI), goldLight);
+collar.position.set(0,-.82,.25); collar.rotation.x = Math.PI/2; robot.add(collar);
+for(let j=0;j<3;j++){
+  const neckBand=new THREE.Mesh(new THREE.TorusGeometry(.78-j*.08,.075,10,40,Math.PI),j%2?blue:goldLight);
+  neckBand.position.set(0,-.93-j*.13,.88); neckBand.rotation.z=Math.PI; robot.add(neckBand);
+}
+[-1,1].forEach(side=>{
+  for(let j=0;j<3;j++){
+    const wing=new THREE.Mesh(new THREE.BoxGeometry(.48-j*.07,.1,.09),goldLight);
+    wing.position.set(side*(.35+j*.18),-1.37-j*.055,1.17); wing.rotation.z=side*(.16+j*.04); robot.add(wing);
+  }
+});
+const belt=new THREE.Mesh(new THREE.TorusGeometry(.86,.16,14,48),goldLight); belt.scale.set(1,.72,1); belt.rotation.x=Math.PI/2; belt.position.set(0,-2.58,.08); robot.add(belt);
+[-1,0,1].forEach(i=>{ const skirt=new THREE.Mesh(new THREE.BoxGeometry(i===0?.38:.42,i===0?.88:.7,.14),i===0?blue:goldLight); skirt.position.set(i*.42,-2.98,.55); skirt.rotation.z=-i*.2; robot.add(skirt); });
+
+const headPivot = new THREE.Group(); headPivot.position.y=.22; robot.add(headPivot);
+const headdress = new THREE.Mesh(new THREE.SphereGeometry(1.62,40,28), blue);
+headdress.scale.set(1.12,1.05,.5); headdress.position.z=-.12; headPivot.add(headdress);
+const face = new THREE.Mesh(new THREE.SphereGeometry(1.18,40,28), dark);
+face.scale.set(1,.86,.56); face.position.z=.63; headPivot.add(face);
+const faceRim = new THREE.Mesh(new THREE.TorusGeometry(1.04,.105,14,64),goldLight);
+faceRim.scale.set(1,.86,1); faceRim.position.set(0,.01,1.08); headPivot.add(faceRim);
+const browBand = new THREE.Mesh(new THREE.TorusGeometry(1.31,.16,16,64,Math.PI),goldLight);
+browBand.position.set(0,.57,.58); browBand.rotation.z=Math.PI; browBand.scale.set(1,.72,1); headPivot.add(browBand);
+
+[-1,1].forEach(side=>{
+  const flap=new THREE.Mesh(new THREE.BoxGeometry(.76,2.32,.3),blue);
+  flap.position.set(side*1.22,-.12,.12); flap.rotation.z=-side*.16; headPivot.add(flap);
+  for(let j=0;j<4;j++){
+    const band=new THREE.Mesh(new THREE.BoxGeometry(.72,.19,.39),goldLight);
+    band.position.set(side*1.22,.72-j*.5,.16); band.rotation.z=-side*.16; headPivot.add(band);
+  }
+  const tip=new THREE.Mesh(new THREE.ConeGeometry(.38,.72,4),gold);
+  tip.position.set(side*1.29,-1.25,.14); tip.rotation.z=side*.78; headPivot.add(tip);
+});
+
+const eyeGeo = new THREE.SphereGeometry(.22,24,16);
+const eyeL = new THREE.Mesh(eyeGeo, cyan), eyeR = new THREE.Mesh(eyeGeo, cyan);
+eyeL.position.set(-.43,.18,1.23); eyeR.position.set(.43,.18,1.23);
+eyeL.scale.set(1.08,.86,.35); eyeR.scale.copy(eyeL.scale);
+headPivot.add(eyeL,eyeR);
+const pupilMat = new THREE.MeshBasicMaterial({color:0x06143c});
+const pupilL = new THREE.Mesh(new THREE.SphereGeometry(.09,18,12),pupilMat), pupilR=pupilL.clone();
+pupilL.position.set(-.43,.18,1.31); pupilR.position.set(.43,.18,1.31); headPivot.add(pupilL,pupilR);
+const eyeGlintMat = new THREE.MeshBasicMaterial({color:0xffffff});
+[-.43,.43].forEach(x=>{ const g=new THREE.Mesh(new THREE.SphereGeometry(.035,10,8),eyeGlintMat); g.position.set(x-.035,.235,1.375); headPivot.add(g); });
+
+const shoulderGeo = new THREE.SphereGeometry(.56,28,18);
+const armPivots=[];
+[-1,1].forEach(side=>{
+  const armPivot=new THREE.Group(); armPivot.position.set(side*1.25,-1.18,.05); robot.add(armPivot); armPivots.push(armPivot);
+  const shoulder=new THREE.Mesh(shoulderGeo,gold); shoulder.scale.set(1.35,.72,.82); armPivot.add(shoulder);
+  const shoulderLight=new THREE.Mesh(new THREE.SphereGeometry(.14,18,12),jointBlue); shoulderLight.position.set(side*.18,.01,.5); armPivot.add(shoulderLight);
+  const upper=new THREE.Mesh(new THREE.CapsuleGeometry(.27,.86,8,18),gold); upper.position.set(side*.08,-.78,0); upper.rotation.z=side*.06; armPivot.add(upper);
+  const elbow=new THREE.Mesh(new THREE.SphereGeometry(.31,20,14),goldLight); elbow.position.set(side*.13,-1.48,.04); armPivot.add(elbow);
+  const elbowLight=new THREE.Mesh(new THREE.SphereGeometry(.11,16,12),jointBlue); elbowLight.position.set(side*.13,-1.48,.31); armPivot.add(elbowLight);
+  const forearm=new THREE.Mesh(new THREE.CapsuleGeometry(.25,.82,8,18),goldLight); forearm.position.set(side*.16,-2.12,.03); forearm.rotation.z=-side*.06; armPivot.add(forearm);
+  const forearmLight=new THREE.Mesh(new THREE.BoxGeometry(.1,.48,.09),cyan); forearmLight.position.set(side*.16,-2.08,.3); armPivot.add(forearmLight);
+  const cuff=new THREE.Mesh(new THREE.TorusGeometry(.28,.075,10,28),blue);
+  cuff.rotation.x=Math.PI/2; cuff.position.set(side*.19,-2.58,.02); armPivot.add(cuff);
+  const palm=new THREE.Mesh(new THREE.BoxGeometry(.43,.48,.24),goldLight);
+  palm.position.set(side*.19,-2.84,.05); palm.rotation.z=-side*.04; armPivot.add(palm);
+  const palmPad=new THREE.Mesh(new THREE.BoxGeometry(.25,.28,.08),dark);
+  palmPad.position.set(side*.19,-2.84,.2); palmPad.rotation.z=-side*.04; armPivot.add(palmPad);
+  for(let f=0;f<4;f++){
+    const finger=new THREE.Mesh(new THREE.CapsuleGeometry(.065,.25,6,12),goldLight);
+    finger.position.set(side*.19+(f-1.5)*.095,-3.18,.06); finger.rotation.z=(f-1.5)*.035; armPivot.add(finger);
+    const fingerJoint=new THREE.Mesh(new THREE.BoxGeometry(.075,.08,.075),dark);
+    fingerJoint.position.set(side*.19+(f-1.5)*.095,-3.12,.13); armPivot.add(fingerJoint);
+  }
+  const thumb=new THREE.Mesh(new THREE.CapsuleGeometry(.075,.22,6,12),goldLight);
+  thumb.position.set(side*.42,-3.08,.08); thumb.rotation.z=-side*.18; armPivot.add(thumb);
+});
+
+const hip = new THREE.Mesh(new THREE.TorusGeometry(.72,.17,12,36),goldLight); hip.rotation.x=Math.PI/2; hip.position.y=-2.76; robot.add(hip);
+const legPivots=[];
+[-1,1].forEach(side=>{
+  const legPivot=new THREE.Group(); legPivot.position.set(side*.48,-2.72,0); robot.add(legPivot); legPivots.push(legPivot);
+  const thigh=new THREE.Mesh(new THREE.CapsuleGeometry(.31,.92,8,18),gold); thigh.position.y=-.72; legPivot.add(thigh);
+  const knee=new THREE.Mesh(new THREE.SphereGeometry(.36,20,14),goldLight); knee.position.set(0,-1.52,.04); legPivot.add(knee);
+  const kneeLight=new THREE.Mesh(new THREE.SphereGeometry(.17,18,12),jointBlue); kneeLight.position.set(0,-1.52,.31); legPivot.add(kneeLight);
+  const shin=new THREE.Mesh(new THREE.CapsuleGeometry(.31,.96,8,18),goldLight); shin.position.set(0,-2.25,.02); legPivot.add(shin);
+  const foot=new THREE.Mesh(new THREE.SphereGeometry(.4,20,14),dark); foot.scale.set(1.05,.55,1.7); foot.position.set(0,-3.02,.3); legPivot.add(foot);
+  const ankleLight=new THREE.Mesh(new THREE.BoxGeometry(.16,.5,.12),cyan); ankleLight.position.set(0,-2.28,.33); legPivot.add(ankleLight);
+  const shinGuard=new THREE.Mesh(new THREE.BoxGeometry(.46,.82,.13),blue); shinGuard.position.set(0,-2.24,.29); legPivot.add(shinGuard);
+  const toeArmor=new THREE.Mesh(new THREE.BoxGeometry(.58,.18,.72),goldLight); toeArmor.position.set(0,-3.02,.54); toeArmor.rotation.x=-.12; legPivot.add(toeArmor);
+});
+
+const floorGlow = new THREE.Mesh(new THREE.CircleGeometry(2.7,64), new THREE.MeshBasicMaterial({color:0x086cff,transparent:true,opacity:.23,side:THREE.DoubleSide}));
+floorGlow.rotation.x=-Math.PI/2; floorGlow.position.y=-5.78; scene.add(floorGlow);
+
+const pointer={x:0,y:0}, target={x:0,y:0};
+let dragging=false, lastDragX=0, manualYaw=0, dragDistance=0, waveUntil=0, walkMode=false;
+stage.addEventListener('pointerdown',e=>{ dragging=true; dragDistance=0; lastDragX=e.clientX; stage.setPointerCapture(e.pointerId); });
+stage.addEventListener('pointerup',e=>{ dragging=false; stage.releasePointerCapture(e.pointerId); });
+stage.addEventListener('pointercancel',()=>dragging=false);
+stage.addEventListener('pointermove',e=>{
+  const r=stage.getBoundingClientRect(); target.x=((e.clientX-r.left)/r.width-.5)*2; target.y=((e.clientY-r.top)/r.height-.5)*2;
+  if(dragging){ const dx=e.clientX-lastDragX; manualYaw+=dx*.012; dragDistance+=Math.abs(dx); lastDragX=e.clientX; }
+});
+stage.addEventListener('click',()=>{ if(dragDistance<8) waveUntil=performance.now()+1700; dragDistance=0; });
+stage.addEventListener('dblclick',()=>{ walkMode=!walkMode; waveUntil=0; });
+stage.addEventListener('pointerleave',()=>{target.x=0;target.y=0;});
+let blinkStart=performance.now()+1800+Math.random()*2200;
+function resize(){ const r=stage.getBoundingClientRect(); renderer.setSize(r.width,r.height,false); camera.aspect=r.width/r.height; camera.updateProjectionMatrix(); }
+new ResizeObserver(resize).observe(stage); resize();
+const clock=new THREE.Clock();
+function animate(now){
+  requestAnimationFrame(animate);
+  const t=clock.getElapsedTime(); pointer.x+=(target.x-pointer.x)*.055; pointer.y+=(target.y-pointer.y)*.055;
+  headPivot.rotation.y=pointer.x*.42; headPivot.rotation.x=pointer.y*.48+Math.sin(t*.72)*.025;
+  robot.rotation.y=manualYaw+Math.sin(t*.36)*.025; robot.position.y=-.18+Math.sin(t*1.25)*.035;
+  const stride=walkMode?.42:.055, pace=walkMode?5.2:.9;
+  armPivots[0].rotation.x=Math.sin(t*pace)*stride*.72; armPivots[1].rotation.x=-Math.sin(t*pace)*stride*.72;
+  armPivots[0].rotation.z=-.08+Math.sin(t*.7)*.035; armPivots[1].rotation.z=.08-Math.sin(t*.7)*.035;
+  legPivots[0].rotation.x=-Math.sin(t*pace)*stride; legPivots[1].rotation.x=Math.sin(t*pace)*stride;
+  if(now<waveUntil){
+    const wavePhase=(1700-(waveUntil-now))*.018;
+    armPivots[1].rotation.z=2.35;
+    armPivots[1].rotation.x=Math.sin(wavePhase)*.42;
+  }
+  pupilL.position.x=-.43+pointer.x*.055; pupilR.position.x=.43+pointer.x*.055;
+  pupilL.position.y=.18-pointer.y*.035; pupilR.position.y=.18-pointer.y*.035;
+  if(now>blinkStart){ const p=(now-blinkStart)/190; const s=Math.max(.05,Math.abs(p-1)); eyeL.scale.y=eyeR.scale.y=s*.86; if(p>2){ eyeL.scale.y=eyeR.scale.y=.86; blinkStart=now+2200+Math.random()*3300; } }
+  renderer.render(scene,camera);
+}
+requestAnimationFrame(animate);
+</script>
+</body>
 </html>
