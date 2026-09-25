@@ -623,12 +623,23 @@ const face = new THREE.Mesh(new THREE.SphereGeometry(1.18,40,28), dark);
 face.scale.set(1,.86,.56); face.position.z=.63; headPivot.add(face);
 const faceRim = new THREE.Mesh(new THREE.TorusGeometry(1.04,.105,14,64),goldLight);
 faceRim.scale.set(1,.86,1); faceRim.position.set(0,.01,1.08); headPivot.add(faceRim);
+const nemesGold = new THREE.MeshStandardMaterial({ color:0xffbf36, metalness:.82, roughness:.2, side:THREE.DoubleSide });
+const nemesBlue = new THREE.MeshStandardMaterial({ color:0x1264e8, emissive:0x031c62, emissiveIntensity:.55, metalness:.62, roughness:.24, side:THREE.DoubleSide });
+const foreheadBand = new THREE.Mesh(new THREE.TorusGeometry(1.17,.105,12,56,Math.PI),nemesGold);
+foreheadBand.position.set(0,.48,.87); foreheadBand.rotation.z=Math.PI; foreheadBand.scale.set(1,.7,1); headPivot.add(foreheadBand);
 [-1,1].forEach(side=>{
-  const flap=new THREE.Mesh(new THREE.BoxGeometry(.76,1.74,.3),goldLight);
-  flap.position.set(side*1.22,.16,.12); flap.rotation.z=-side*.16; headPivot.add(flap);
-  for(let j=0;j<4;j++){
-    const band=new THREE.Mesh(new THREE.BoxGeometry(.72,.19,.39),blue);
-    band.position.set(side*1.22,.67-j*.38,.16); band.rotation.z=-side*.16; headPivot.add(band);
+  const panelShape=new THREE.Shape();
+  panelShape.moveTo(side*.72,.9);
+  panelShape.lineTo(side*1.42,.64);
+  panelShape.lineTo(side*1.66,-1.2);
+  panelShape.lineTo(side*.88,-.91);
+  panelShape.closePath();
+  const panel=new THREE.Mesh(new THREE.ExtrudeGeometry(panelShape,{depth:.22,bevelEnabled:true,bevelSize:.045,bevelThickness:.045,bevelSegments:2}),nemesBlue);
+  panel.position.z=.08; headPivot.add(panel);
+  for(let j=0;j<5;j++){
+    const stripe=new THREE.Mesh(new THREE.BoxGeometry(.68,.14,.3),nemesGold);
+    stripe.position.set(side*(1.08+j*.055),.62-j*.36,.28);
+    stripe.rotation.z=-side*.13; headPivot.add(stripe);
   }
 });
 
