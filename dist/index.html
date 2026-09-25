@@ -80,35 +80,214 @@
       -webkit-text-fill-color: transparent;
       text-shadow: none;
     }
-  
-.services { --accent:#ba6dff; position:relative; overflow:hidden; padding:64px max(5vw,24px) 48px; background:radial-gradient(ellipse at 75% 48%, #124edd 0, #082367 36%, #030d29 76%); font-family:Arial,sans-serif; }
-.services * {box-sizing:border-box}
-.s-top {display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:#a2aec9;text-transform:uppercase}
-.s-top b {font-size:23px;letter-spacing:-1px;color:white}.s-top b i {font-style:normal;color:#b673ff}
-.s-heading {text-align:center;margin:44px 0 12px;font-size:clamp(38px,5vw,76px);line-height:1.04;letter-spacing:-3px;font-weight:700}
-.s-heading em {font-style:normal;background:linear-gradient(100deg,#e050ed,#9870ff,#5c9bff);background-clip:text;color:transparent}
-.s-intro{text-align:center;color:#a4b0cb;font-size:15px;line-height:1.6;margin:0 auto 32px}
-.s-stage {position:relative;max-width:1250px;margin:auto;display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:34px;align-items:center;min-height:445px}
-.s-column{display:grid;gap:16px;position:relative;z-index:2}
-.service-choice {position:relative;text-align:left;color:#e8ebff;background:linear-gradient(110deg,#15214499,#0c143199);border:1px solid #98a7ff22;border-radius:16px;padding:20px;cursor:pointer;transition:background .25s,border-color .25s,transform .25s;min-height:111px;width:100%;font:inherit}
-.service-choice:after{content:'';position:absolute;width:35px;height:1px;background:#8fa4ff30;top:50%;right:-35px}.s-column.right .service-choice:after{right:auto;left:-35px}
-.service-choice:hover,.service-choice[aria-pressed=true]{border-color:#b57bff;background:linear-gradient(110deg,#6133a744,#182448aa);transform:translateY(-3px);box-shadow:0 0 26px #9b52ff16}
-.service-choice[aria-pressed=true]:after{background:#bd80ff;box-shadow:0 0 10px #bf80ff}
-.service-choice:focus-visible{outline:2px solid #80e7ff;outline-offset:4px}
-.s-num{font-size:10px;letter-spacing:2px;color:#ac80eb;display:block;margin-bottom:9px}.service-choice strong{font-size:17px;display:block;letter-spacing:-.3px}.service-choice small{font-size:12px;color:#9eaac5;display:block;margin-top:7px}
-.kmt-stage{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0;isolation:isolate;perspective:900px}
-.kmt-ring{position:absolute;width:115%;aspect-ratio:1;border-radius:50%;border:1px solid #ae7cf84a;box-shadow:0 0 65px #9149ff25,inset 0 0 50px #4460ff20;top:8%;z-index:-1}
-.kmt-ring:before,.kmt-ring:after{content:'';position:absolute;inset:8%;border:1px dashed #819fff40;border-radius:50%}.kmt-ring:after{inset:-9%;border-style:solid;border-color:#7698ff12}
-.kmt-figure{position:relative;isolation:isolate;width:118%;max-width:none;mask-image:radial-gradient(ellipse 49% 52% at 50% 48%,black 64%,transparent 100%);mix-blend-mode:lighten;animation:kmt-breathe 6s ease-in-out infinite}
-.kmt-body-img{display:block;width:100%;height:auto}
-.kmt-head-crop{position:absolute;left:23.92%;top:0.96%;width:55.02%;height:43.54%;transform-style:preserve-3d;transition:transform .2s ease-out;will-change:transform;transform-origin:50% 88%}
-.kmt-head-img{display:block;width:100%;height:100%}
-.kmt-name{position:absolute;bottom:0;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;border:1px solid #b081f44d;border-radius:40px;background:#0b1334db;padding:12px 27px;box-shadow:0 0 30px #9c55ff20}.kmt-name b{display:block;letter-spacing:4px;font-size:14px}.kmt-name span{font-size:9px;letter-spacing:2px;color:#94acd5;display:block;margin-top:5px}
-.s-detail{max-width:1250px;margin:32px auto 0;padding:27px 30px;border-top:1px solid #939eff30;display:grid;grid-template-columns:1fr 1.3fr;gap:35px;align-items:center}.s-detail .eyebrow{color:#c18afc;font-size:10px;letter-spacing:2px}.s-detail h3{font-size:25px;margin:9px 0;letter-spacing:-.6px}.s-detail p{color:#b5bfd7;line-height:1.65;font-size:14px;margin:0}.s-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.s-tags span{padding:7px 11px;background:#162144;border:1px solid #859aff20;border-radius:7px;font-size:11px;color:#c9d7f1}
-.s-foot{max-width:1250px;margin:15px auto 0;font-size:10px;letter-spacing:2px;color:#7384a8;display:flex;justify-content:space-between}
-@keyframes kmt-breathe{50%{transform:translateY(-7px)}}
-@media(max-width:750px){.services{padding-top:28px}.s-heading{letter-spacing:-1.6px;margin-top:30px}.s-top{font-size:8px;letter-spacing:1px}.s-stage{grid-template-columns:1fr 1fr;gap:12px}.kmt-stage{grid-column:1/-1;grid-row:1;min-height:290px;max-width:290px;width:100%;margin:auto}.kmt-figure{width:290px}.kmt-ring{width:270px}.s-column{gap:12px}.service-choice{padding:14px;min-height:120px}.service-choice strong{font-size:14px}.service-choice small{font-size:11px;line-height:1.4}.service-choice:after{display:none}.s-detail{grid-template-columns:1fr;gap:8px;padding:24px 0}.s-foot{font-size:8px;letter-spacing:1px}}
-@media(prefers-reduced-motion:reduce){.kmt-figure{animation:none}.service-choice{transition:none}.kmt-head-crop{transition:none}}
+
+/* ===== SERVICES — book-style carousel ===== */
+.services {
+  --accent-solid: #9870ff; --accent-solid-2: #6a3df2; --accent-text: #e6d9ff;
+  --accent-border: #c497ffb0; --accent-fill: linear-gradient(155deg, #9870ff70, #9870ff20);
+  --accent-glow: #6a3df260; --accent-bar: linear-gradient(90deg, #e050ed, #9870ff, #7b4dff);
+  --accent-fill-soft: linear-gradient(155deg, #9870ff45, #9870ff15);
+  --accent-border-soft: #c497ff60;
+  position: relative; overflow: hidden; padding: 64px max(5vw,24px) 56px; font-family: Arial, Helvetica, sans-serif;
+}
+.services * { box-sizing: border-box; }
+
+.services-head { text-align: center; margin: 40px auto 34px; max-width: 700px; }
+.services-head .services-word { margin: 0 0 6px; font: 900 clamp(30px,3.6vw,50px)/1 Arial; letter-spacing: -1px; text-transform: uppercase; color: #fff; }
+.services-head .tagline { margin: 0; font: 700 clamp(16px,1.8vw,22px)/1.3 Arial; letter-spacing: -.3px; color: #d7ddf5; }
+.services-head .tagline em { font-style: normal; background: linear-gradient(100deg,#e050ed,#9870ff,#5c9bff); background-clip: text; -webkit-background-clip: text; color: transparent; }
+
+/* service picker cards */
+.picker-wrap { position: relative; max-width: 1300px; margin: 0 auto 40px; display: flex; align-items: center; gap: 16px; }
+.picker-arrow {
+  flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%; color: #fff; font-size: 19px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: transform .2s, background .2s, border-color .2s;
+  background: linear-gradient(155deg, #ffffff26, #ffffff08);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #ffffff3d; box-shadow: 0 10px 24px #00082f60, inset 0 1px 1px #ffffff40;
+}
+.picker-arrow:hover:not(:disabled) { background: linear-gradient(155deg, var(--accent-solid), var(--accent-solid-2)); border-color: var(--accent-border); transform: scale(1.07); }
+.picker-arrow:disabled { opacity: .3; cursor: default; }
+
+.picker-row-mask { position: relative; flex: 1; min-width: 0; }
+.picker-row-mask::before, .picker-row-mask::after {
+  content: ''; position: absolute; top: 0; bottom: 10px; width: 36px; z-index: 2; pointer-events: none;
+}
+.picker-row-mask::before { left: 0; background: linear-gradient(90deg, #0745bc, transparent); }
+.picker-row-mask::after { right: 0; background: linear-gradient(270deg, #0745bc, transparent); }
+
+.picker-row { display: flex; gap: 16px; justify-content: center; min-width: 0; scrollbar-width: none; -ms-overflow-style: none; }
+.picker-row::-webkit-scrollbar { display: none; }
+.picker-row.scroll { flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scroll-snap-type: x proximity; padding: 4px 2px 10px; }
+.picker-row.scroll .picker-card { flex: 0 0 200px; scroll-snap-align: start; }
+
+.picker-card {
+  position: relative; flex: 1 1 200px; max-width: 220px; text-align: center; color: #e8ebff;
+  background: var(--accent-fill-soft);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--accent-border-soft); border-radius: 18px;
+  padding: 24px 16px 20px; cursor: pointer; font: inherit;
+  transition: background .22s, border-color .22s, transform .22s, box-shadow .22s;
+  box-shadow: 0 10px 24px #00082f40;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.picker-card:hover { border-color: var(--accent-border); transform: translateY(-4px); box-shadow: 0 16px 32px #00082f60; }
+.picker-card.active {
+  border-color: var(--accent-border); transform: translateY(-4px);
+  background: var(--accent-fill);
+  box-shadow: 0 16px 36px var(--accent-glow), inset 0 1px 1px #ffffff40;
+}
+.picker-card strong { font-size: 18px; display: block; letter-spacing: -.3px; line-height: 1.25; }
+.picker-card small { font-size: 11.5px; color: #b9c2e6; line-height: 1.4; display: block; }
+.picker-card::after {
+  content: ''; position: absolute; left: 18px; right: 18px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0;
+  background: transparent; transition: background .22s;
+}
+.picker-card.active::after { background: var(--accent-bar); }
+
+/* book spread — one frosted-glass card holding both pages */
+.book-frame {
+  position: relative; max-width: 1500px; margin: 0 auto; border-radius: 40px;
+  padding: 3px; overflow: hidden; box-shadow: 0 40px 80px #00072870;
+}
+.book-frame.glass {
+  background: linear-gradient(155deg, #ffffff3d 0%, #ffffff12 30%, #ffffff08 55%, #ffffff20 100%);
+  backdrop-filter: blur(22px) saturate(120%);
+  -webkit-backdrop-filter: blur(22px) saturate(120%);
+  border: 1px solid #ffffff40;
+}
+.book-frame::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .5; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.book-frame::after {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; border-radius: inherit;
+  box-shadow: inset 0 1px 1px #ffffff70, inset 0 40px 70px #ffffff1c, inset 0 -30px 60px #00000030;
+}
+
+.spread {
+  position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr;
+  width: 100%; min-height: 480px; border-radius: 38px; overflow: hidden;
+}
+.page { position: relative; padding: 46px 54px; display: flex; }
+.page.left { flex-direction: column; justify-content: center; }
+.page.right { align-items: center; }
+
+.spread::before {
+  content: ''; position: absolute; left: 50%; top: 4%; bottom: 4%; width: 64px; transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #00000030 40%, #00000048 50%, #00000030 60%, transparent);
+  z-index: 3; pointer-events: none;
+}
+.spread::after {
+  content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%);
+  background: #ffffff40; z-index: 3;
+}
+
+.book-headline {
+  position: relative; z-index: 1; margin: 0 0 22px; color: var(--accent-text);
+  font: 900 clamp(34px,5vw,76px)/.95 Arial; letter-spacing: -2px; text-transform: uppercase;
+}
+.book-desc { position: relative; z-index: 1; color: #c3ccec; font-size: clamp(14px,1.1vw,17px); line-height: 1.65; max-width: 480px; margin: 0 0 34px; }
+.book-cta { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #1a2c7c; font: 800 13px/1 Arial; letter-spacing: .5px; padding: 17px 28px; border-radius: 999px; border: 0; cursor: pointer; width: fit-content; text-transform: uppercase; }
+
+.book-imgs { position: relative; z-index: 1; width: 100%; height: 100%; }
+.img-card {
+  position: relative; width: 100%; height: 100%; min-height: 420px;
+  border-radius: 20px; overflow: hidden; background: #0b1230cc; border: 1px solid #ffffff20;
+}
+.shot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.shot.on { opacity: 1; pointer-events: auto; }
+.placeholder-img { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; background: linear-gradient(135deg,#16225a,#0b1638); color: #93a6e6; font: 700 12px Arial; letter-spacing: 1px; text-align: center; padding: 20px; }
+.placeholder-img .icon { width: 44px; height: 44px; border-radius: 12px; background: #2a3c8a; display:flex; align-items:center; justify-content:center; font-size: 20px; }
+.img-tag { position: absolute; top: 14px; left: 14px; background: #0b1334cc; border: 1px solid #6f8cff55; font: 700 10px Arial; letter-spacing: 1px; padding: 6px 12px; border-radius: 999px; z-index: 2; }
+.shot-count { position: absolute; top: 14px; right: 14px; background: #0b1334cc; border: 1px solid #6f8cff55; font: 700 11px Arial; letter-spacing: 1px; padding: 6px 12px; border-radius: 999px; z-index: 2; }
+.shot-arrow { position: absolute; top: 50%; translate: 0 -50%; width: 52px; height: 52px; border-radius: 50%; background: #0b1334d9; border: 1px solid #6f8cff66; color: #fff; font-size: 20px; cursor: pointer; z-index: 2; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s; }
+.shot-arrow:hover { background: #4b3df2; transform: translateY(-50%) scale(1.06); }
+.shot-arrow.next { right: 18px; } .shot-arrow.prev { left: 18px; }
+.shot-dots { position: absolute; bottom: 18px; left: 50%; translate: -50% 0; display: flex; gap: 7px; z-index: 2; }
+.shot-dots span { width: 8px; height: 8px; border-radius: 50%; background: #ffffff4d; }
+.shot-dots span.on { background: #fff; }
+
+@media (max-width: 900px) {
+  .spread { grid-template-columns: 1fr; }
+  .spread::before, .spread::after { display: none; }
+}
+@media (max-width: 750px) {
+  .services { padding-top: 28px; }
+}
+@media (prefers-reduced-motion: reduce) { .picker-card, .picker-arrow, .shot-arrow { transition: none; } }
+
+/* ===== CONTACT — "Tell us what is slowing your business down" ===== */
+.contact { position: relative; overflow: hidden; padding: 64px max(5vw,24px) 80px; font-family: Arial, Helvetica, sans-serif; }
+.contact * { box-sizing: border-box; }
+
+/* the contact book-frame uses a black-tinted glass (blocks the background glow), unlike the plain glass used for services */
+.contact .book-frame { box-shadow: 0 40px 80px #00000090; }
+.contact .book-frame.glass {
+  background:
+    linear-gradient(155deg, #ffffff3d 0%, #ffffff12 30%, #ffffff08 55%, #ffffff20 100%),
+    #000000a6;
+}
+.contact .book-frame::after {
+  box-shadow: inset 0 1px 1px #ffffff70, inset 0 40px 70px #ffffff1c, inset 0 -30px 60px #00000060;
+}
+
+.contact-frame {
+  position: relative; z-index: 1; display: grid; grid-template-columns: 0.85fr 1.15fr;
+  border-radius: 38px; overflow: hidden;
+}
+
+/* left — violet-tinted intro panel, layered on the black-tinted glass frame */
+.contact-intro {
+  position: relative; overflow: hidden; padding: 48px 44px;
+  background: linear-gradient(155deg, #9870ff70, #6a3df280, #3448c580);
+  display: flex; flex-direction: column; justify-content: flex-start;
+}
+.contact-intro::after {
+  content: ''; position: absolute; right: -30px; bottom: -40px; width: 75%; aspect-ratio: 1;
+  background: url('./hero-target.png') center / contain no-repeat;
+  opacity: .55; pointer-events: none;
+}
+.contact-intro .eyebrow { position: relative; z-index: 1; font: 700 12px Arial; letter-spacing: 3px; color: #ffffffa6; text-transform: uppercase; margin-bottom: 16px; }
+.contact-intro h2 { position: relative; z-index: 1; margin: 0 0 16px; font: 900 clamp(26px,3vw,38px)/1.15 Arial; letter-spacing: -1px; }
+.contact-intro p { position: relative; z-index: 1; margin: 0 0 28px; color: #ffffffb3; line-height: 1.65; font-size: 15px; }
+.contact-checks { position: relative; z-index: 1; display: grid; gap: 14px; }
+.contact-checks div { display: flex; align-items: center; gap: 10px; font: 700 13.5px Arial; color: #ffffffd9; }
+.contact-checks .tick { width: 20px; height: 20px; border-radius: 50%; background: #ffffff26; flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 11px; }
+
+/* right — solid, fully opaque blue panel */
+.contact-form-panel { background: linear-gradient(155deg, #124edd 0%, #0a3499 55%, #082367 100%); padding: 44px; }
+.contact-field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.contact-field { display: flex; flex-direction: column; gap: 7px; font: 700 12.5px Arial; color: #d7ddf5; }
+.contact-field.full { grid-column: 1 / -1; }
+.contact-field input, .contact-field select, .contact-field textarea {
+  font: 400 14px Arial; color: #fff; background-color: #ffffff12; border: 1px solid #ffffff2e; border-radius: 12px;
+  padding: 13px 14px; outline: none; transition: border-color .2s, box-shadow .2s;
+}
+.contact-field input::placeholder, .contact-field textarea::placeholder { color: #a9b3d8; }
+.contact-field input:focus, .contact-field select:focus, .contact-field textarea:focus { border-color: #b58aff; box-shadow: 0 0 0 4px #6a3df233; }
+.contact-field textarea { min-height: 120px; resize: vertical; font-family: Arial; }
+.phone-row { display: flex; gap: 10px; }
+.phone-code {
+  flex: 0 0 100px; width: 100px; min-width: 0; appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23a9b3d8' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center; background-size: 16px;
+  padding-right: 30px; cursor: pointer;
+}
+.phone-code option { background: #1a2c7c; color: #fff; }
+.phone-number { flex: 1; min-width: 0; }
+.contact-agree { grid-column: 1 / -1; display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.5; color: #c3ccec; margin-top: 4px; }
+.contact-agree input { margin-top: 3px; accent-color: #9870ff; }
+.contact-submit-row { grid-column: 1 / -1; margin-top: 6px; }
+.contact-submit {
+  display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #1a2c7c;
+  font: 800 13px/1 Arial; letter-spacing: .5px; padding: 16px 30px; border-radius: 999px; border: 0;
+  cursor: pointer; text-transform: uppercase;
+}
+@media (max-width: 820px) {
+  .contact-frame { grid-template-columns: 1fr; }
+  .contact-field-grid { grid-template-columns: 1fr; }
+}
 
 /* User-authorized logo-blue background preview only. */
 .services, .founder {
@@ -127,38 +306,104 @@
 .hero-title em{display:block;font-style:normal;width:fit-content;background:linear-gradient(100deg,#f56cec,#be4cff 43%,#05cef2 100%);background-clip:text;-webkit-background-clip:text;color:transparent;padding-bottom:.5vw}
 .hero-description{position:absolute;left:4.65%;top:50.7%;width:41%;margin:0;font:400 1.77vw/1.36 Arial,sans-serif;color:#d8e1ff}
 .hero-actions{position:absolute;left:4.65%;top:62.15%;display:flex;gap:1.6vw}.hero-actions a,.hero-actions button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:700 1.43vw Arial,sans-serif;text-decoration:none;border:2px solid white;border-radius:1.65vw;height:4.5vw;cursor:pointer;transition:box-shadow .2s}.hero-actions button{background:#fff;color:#0443cd;width:20.1vw}.hero-actions a{background:transparent;color:white;width:17.8vw}.hero-actions a:hover,.hero-actions button:hover{box-shadow:0 0 24px #61dfff88}
-.hero-art{display:none}.hero-bottom{position:absolute;left:4.4%;right:4.3%;bottom:8.4%;display:flex;justify-content:space-between;align-items:center;font:400 1.26vw Arial,sans-serif;letter-spacing:.17vw}.hero-bottom a{font-size:1.25vw;color:white;text-decoration:none;letter-spacing:0}.hero-bottom a:hover{text-decoration:underline}
+.hero-art{display:none}
 .hero-contact{color:white;background:#124edd;border:1px solid #7fceff;border-radius:20px;padding:32px;max-width:440px;width:90%;box-shadow:0 20px 80px #001a7380}.hero-contact::backdrop{background:#073aab99;backdrop-filter:blur(8px)}.hero-contact h2{font-size:26px;margin-top:0}.hero-contact p{font-size:16px;line-height:1.6}.hero-contact button{background:white;color:#1047c4;padding:12px 20px;border:0;border-radius:10px;font-size:16px;cursor:pointer}
 .uno-hero a:focus-visible,.uno-hero button:focus-visible{outline:3px solid #a4f5ff;outline-offset:5px}
-@media(max-width:700px){.uno-hero{aspect-ratio:auto;min-height:930px;background-size:auto 620px;background-position:right -70px bottom;background-color:#0843ba}.hero-nav{height:95px;background:#0843ba}.hero-logo{left:20px;top:16px;width:125px;height:65px;background:url('./uno-logo.png') 50% 37%/260px auto no-repeat;mix-blend-mode:screen}.hero-links{right:20px;top:27px;gap:17px}.hero-links a,.hero-links button{font-size:14px}.hero-links .hero-about,.hero-links .hero-work,.hero-links .hero-contact-link{display:none}.hero-links button:last-child{padding:12px 15px;border-radius:12px}.hero-kicker{left:24px;top:124px;font-size:11px;letter-spacing:2px}.hero-title{left:24px;top:157px;font-size:clamp(31px,6.3vw,44px);letter-spacing:-1px;line-height:1.18}.hero-description{left:24px;top:264px;width:calc(100% - 48px);font-size:17px;line-height:1.5}.hero-actions{left:24px;top:370px;gap:12px}.hero-actions a,.hero-actions button{font-size:13px;width:auto;height:48px;padding:0 16px;border-radius:13px}.hero-bottom{bottom:24px;left:24px;right:24px;font-size:11px;letter-spacing:1px}.hero-bottom a{font-size:12px}}
+@media(max-width:700px){.uno-hero{aspect-ratio:auto;min-height:930px;background-size:auto 620px;background-position:right -70px bottom;background-color:#0843ba}.hero-nav{height:95px;background:#0843ba}.hero-logo{left:20px;top:16px;width:125px;height:65px;background:url('./uno-logo.png') 50% 37%/260px auto no-repeat;mix-blend-mode:screen}.hero-links{right:20px;top:27px;gap:17px}.hero-links a,.hero-links button{font-size:14px}.hero-links .hero-about,.hero-links .hero-work,.hero-links .hero-contact-link{display:none}.hero-links button:last-child{padding:12px 15px;border-radius:12px}.hero-kicker{left:24px;top:124px;font-size:11px;letter-spacing:2px}.hero-title{left:24px;top:157px;font-size:clamp(31px,6.3vw,44px);letter-spacing:-1px;line-height:1.18}.hero-description{left:24px;top:264px;width:calc(100% - 48px);font-size:17px;line-height:1.5}.hero-actions{left:24px;top:370px;gap:12px}.hero-actions a,.hero-actions button{font-size:13px;width:auto;height:48px;padding:0 16px;border-radius:13px}}
 @media(max-width:700px){.uno-hero:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(#0843ba 29%,transparent 48%);pointer-events:none}}
 @media(prefers-reduced-motion:reduce){.hero-actions a,.hero-actions button{transition:none}}
 
 /* Requested hero background treatment on the two following sections. */
-.services, .founder { background: #0745bc url('./blue-floor.png') center / 100% 100% no-repeat; }
+.services, .founder, .contact { background: #0745bc url('./blue-floor.png') center / 100% 100% no-repeat; }
 /* Preview: narrow blue transitions, with the artwork position preserved. */
 .uno-hero { box-shadow: inset 0 -72px 48px -40px #0745bc; }
 .services { box-shadow: inset 0 72px 48px -40px #0745bc, inset 0 -72px 48px -40px #0745bc; }
 .founder { box-shadow: inset 0 72px 48px -40px #0745bc; }
-.s-detail {
-  position: relative;
-  isolation: isolate;
-}
-.s-detail::before {
-  content: "";
-  position: absolute;
-  inset: -12px -16px;
-  z-index: -1;
-  pointer-events: none;
-  background: #1045b8e6;
-  filter: blur(16px);
-  border-radius: 26px;
-}
-.s-detail p { color: #edf3ff; }
+.contact { box-shadow: inset 0 72px 48px -40px #0745bc; }
 </style>
 </head>
 <body>
-  <main><section class="uno-hero" aria-labelledby="hero-heading"><nav class="hero-nav" aria-label="Main navigation"><a class="hero-logo" href="#hero-heading" aria-label="UNO home"><img src="./uno-logo.png" alt="UNO — Empowering Innovation"></a><div class="hero-links"><a href="#services-heading">Services</a><button class="hero-work" type="button" data-work>Our Work</button><a class="hero-about" href="#founder-title">About</a><button class="hero-contact-link" type="button" data-contact>Contact</button><button type="button" data-contact>Let’s talk</button></div></nav><div class="hero-main"><div class="hero-copy"><p class="hero-kicker">SOFTWARE &amp; AI COMPANY</p><h2 class="hero-title" id="hero-heading">Your next big idea.<em>Built with UNO.</em></h2><p class="hero-description">Custom software, AI and automation that turn ambitious ideas into useful digital experiences.</p><div class="hero-actions"><button type="button" data-contact>Discuss your project&nbsp; →</button><a href="#services-heading">Explore services</a></div></div><img class="hero-art" src="./hero-target.png" alt="A polished silver target with a cyan dart hitting its glowing center"></div><div class="hero-bottom"><span>— &nbsp; Empowering Innovation.</span><a href="#services-heading">↓ &nbsp; Discover UNO</a></div></section><dialog class="hero-contact"><h2>Let’s talk about your project</h2><p>UNO’s contact details will be available here soon.</p><form method="dialog"><button>Close</button></form></dialog><section class="services" aria-labelledby="services-heading"><div class="s-top"><b>UNO<i> /</i></b><span>Software · Intelligence · Possibility</span><span>01 — SERVICES</span></div><h2 class="s-heading" id="services-heading">Your ambition.<br><em>Our intelligence.</em></h2><p class="s-intro">Eleven capabilities. One connected partner.<br>Select a service to explore what we can build together.</p><div class="s-stage"><div class="s-column"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="0"><span class="s-num">01 /</span><strong>Custom Software</strong><small>Built around your business</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="1"><span class="s-num">02 /</span><strong>Websites & Mobile</strong><small>Experiences people return to</small></button><button class="service-choice" aria-pressed="true" aria-controls="service-detail" data-service="2"><span class="s-num">03 /</span><strong>AI & Automation</strong><small>Less repetition. More possibility.</small></button></div><div class="kmt-stage" id="kmt-stage"><div class="kmt-ring" aria-hidden="true"></div><div class="kmt-figure"><img class="kmt-body-img" src="./kmt-body.png" alt="KMT AI, UNO's gold and blue robotic Pharaoh with a glass visor and cyan eyes"><div class="kmt-head-crop" id="kmt-look"><img class="kmt-head-img" src="./kmt-head.png" alt=""></div></div><div class="kmt-name"><b>KMT AI</b><span>MEET YOUR DIGITAL ALLY</span></div></div><div class="s-column right"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="3"><span class="s-num">04 /</span><strong>SaaS Products</strong><small>Software from UNO</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="4"><span class="s-num">05 /</span><strong>Integrations & Cloud</strong><small>Everything working together</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="5"><span class="s-num">06 /</span><strong>Quality, Security & Data</strong><small>Confidence in every decision</small></button></div></div><div class="s-detail" id="service-detail" aria-live="polite" aria-atomic="true"><div><span class="eyebrow" id="s-category"></span><h3 id="s-title"></h3></div><div><p id="s-description"></p><div class="s-tags" id="s-tags"></div></div></div><div class="s-foot"><span>BUILT FOR YOUR NEXT CHAPTER</span><span>EXPLORE ABOVE ↑</span></div></section>
+  <main><section class="uno-hero" aria-labelledby="hero-heading"><nav class="hero-nav" aria-label="Main navigation"><a class="hero-logo" href="#hero-heading" aria-label="UNO home"><img src="./uno-logo.png" alt="UNO — Empowering Innovation"></a><div class="hero-links"><a href="#services-heading">Services</a><button class="hero-work" type="button" data-work>Our Work</button><a class="hero-about" href="#founder-title">About</a><button class="hero-contact-link" type="button" data-contact>Contact</button><button type="button" data-contact>Let’s talk</button></div></nav><div class="hero-main"><div class="hero-copy"><p class="hero-kicker">SOFTWARE &amp; AI COMPANY</p><h2 class="hero-title" id="hero-heading">Your next big idea.<em>Built with UNO.</em></h2><p class="hero-description">Custom software, AI and automation that turn ambitious ideas into useful digital experiences.</p><div class="hero-actions"><button type="button" data-contact>Discuss your project&nbsp; →</button><a href="#services-heading">Explore services</a></div></div><img class="hero-art" src="./hero-target.png" alt="A polished silver target with a cyan dart hitting its glowing center"></div></section><dialog class="hero-contact"><h2>Let’s talk about your project</h2><p>UNO’s contact details will be available here soon.</p><form method="dialog"><button>Close</button></form></dialog><section class="services" aria-labelledby="services-heading">
+
+    <div class="services-head">
+      <h2 class="services-word" id="services-heading">SERVICES</h2>
+      <p class="tagline">Your ambition. <em>Our intelligence.</em></p>
+    </div>
+
+    <div class="picker-wrap">
+      <button class="picker-arrow" id="picker-prev" aria-label="Scroll services left">‹</button>
+      <div class="picker-row-mask">
+        <div class="picker-row scroll" id="picker-row"></div>
+      </div>
+      <button class="picker-arrow" id="picker-next" aria-label="Scroll services right">›</button>
+    </div>
+
+    <div class="book-frame glass">
+      <div class="spread">
+        <div class="page left">
+          <h2 class="book-headline" id="book-headline"></h2>
+          <p class="book-desc" id="book-desc"></p>
+          <button class="book-cta" type="button" data-contact>Explore This Service →</button>
+        </div>
+
+        <div class="page right">
+          <div class="book-imgs">
+            <div class="img-card" id="img-card">
+              <span class="img-tag" id="shot-tag"></span>
+              <span class="shot-count" id="shot-count"></span>
+              <div class="shot on" data-shot="0"><div class="placeholder-img"><div class="icon">▦</div>Real screenshot 1 goes here</div></div>
+              <div class="shot" data-shot="1"><div class="placeholder-img"><div class="icon">▤</div>Real screenshot 2 goes here</div></div>
+              <button class="shot-arrow prev" id="shot-prev" aria-label="Previous screenshot">‹</button>
+              <button class="shot-arrow next" id="shot-next" aria-label="Next screenshot">›</button>
+              <div class="shot-dots"><span class="on"></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    <section class="contact" aria-labelledby="contact-heading">
+      <div class="book-frame glass">
+        <div class="contact-frame">
+          <div class="contact-intro">
+            <div class="eyebrow">Let's talk</div>
+            <h2 id="contact-heading">Tell us what is slowing your business down.</h2>
+            <p>Describe the problem, and we will contact you to discuss a suitable solution.</p>
+            <div class="contact-checks">
+              <div><span class="tick">✓</span>No technical language required</div>
+              <div><span class="tick">✓</span>Your information stays private</div>
+              <div><span class="tick">✓</span>We will contact you directly</div>
+            </div>
+          </div>
+
+          <form class="contact-form-panel">
+            <div class="contact-field-grid">
+              <label class="contact-field"><span>Business type</span><input type="text" placeholder="e.g. Real estate agency"></label>
+              <label class="contact-field"><span>Affected area</span><input type="text" placeholder="Choose a business area"></label>
+              <label class="contact-field"><span>Company name</span><input type="text" placeholder="Your company"></label>
+              <label class="contact-field"><span>Contact name</span><input type="text" placeholder="Your name"></label>
+              <label class="contact-field"><span>Email</span><input type="email" placeholder="name@company.com"></label>
+              <label class="contact-field"><span>Phone / WhatsApp</span>
+                <div class="phone-row">
+                  <select class="phone-code">
+                    <option value="+961" selected>+961</option>
+                    <option value="+971">+971</option>
+                    <option value="+966">+966</option>
+                    <option value="+20">+20</option>
+                    <option value="+1">+1</option>
+                    <option value="+44">+44</option>
+                  </select>
+                  <input class="phone-number" type="text" placeholder="00 000 000" inputmode="tel">
+                </div>
+              </label>
+              <label class="contact-field full"><span>Describe your problem</span><textarea placeholder="Tell us what is happening and what you would like to improve."></textarea></label>
+              <label class="contact-agree"><input type="checkbox">I agree to the privacy notice and to being contacted.</label>
+              <div class="contact-submit-row"><button class="contact-submit" type="submit">Submit Problem →</button></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
     <section class="founder" aria-labelledby="founder-title">
       <div class="inner">
         <div class="scene" aria-hidden="true"><div class="halo"></div><div class="orbit"></div><div class="floor"></div></div>
@@ -168,26 +413,69 @@
     </section>
   </main>
 <script>
-const serviceData=[["Custom Software", "Built around your business", "Applications that fit the way you work.", "We design custom web applications, internal systems, and platforms around your team\u2019s processes and your customers\u2019 needs.", ["Web applications", "Internal systems", "Custom platforms"]], ["Websites & Mobile", "Experiences people return to", "Your next idea. On every screen.", "From a distinctive website to a dedicated mobile app, we create clear, useful digital experiences that connect your business with its audience.", ["Website development", "Mobile app development"]], ["AI & Automation", "Less repetition. More possibility.", "Put intelligence to work.", "Connect AI agents, copilots, and AI-powered applications with automated workflows to help your team handle repetitive tasks and focus on meaningful work.", ["AI agents & copilots", "AI-powered applications", "Business workflows"]], ["SaaS Products", "Software from UNO", "Useful software. Ready to subscribe.", "Explore UNO\u2019s own subscription software, designed to address recurring business needs and improve over time.", ["UNO software products", "Subscription access"]], ["Integrations & Cloud", "Everything working together", "Connect your tools. Build your foundation.", "Bring systems together through APIs and integrations, supported by cloud infrastructure and DevOps practices that make software easier to deploy and maintain.", ["Software integrations", "APIs", "Cloud & infrastructure", "DevOps"]], ["Quality, Security & Data", "Confidence in every decision", "Test it. Protect it. Understand it.", "Strengthen your software with quality assurance, automated tests, and cybersecurity services, and turn your business data into useful reporting and analytics.", ["QA & test automation", "Cybersecurity", "Data & analytics"]]];
-function selectService(i){const g=serviceData[i];document.querySelectorAll('[data-service]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.service)===i)));document.getElementById('s-category').textContent=g[0].toUpperCase();document.getElementById('s-title').textContent=g[2];document.getElementById('s-description').textContent=g[3];document.getElementById('s-tags').replaceChildren(...g[4].map(t=>{const x=document.createElement('span');x.textContent=t;return x}));}
-document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>selectService(Number(b.dataset.service))));selectService(2);
+// 11 individual services, de-duplicated (Custom Software's scope excludes web/mobile, which are their own entries)
+const services = [
+  { title: 'Custom Software', desc: 'Internal systems and bespoke business platforms.' },
+  { title: 'SaaS Products', desc: 'Our own software that customers subscribe to.' },
+  { title: 'AI Solutions', desc: 'AI agents, copilots, and AI-powered applications.' },
+  { title: 'Business Automation', desc: 'Automate repetitive business processes and workflows.' },
+  { title: 'Website Development', desc: '(Description not yet provided)' },
+  { title: 'Mobile App Development', desc: '(Description not yet provided)' },
+  { title: 'Software Integrations / APIs', desc: '(Description not yet provided)' },
+  { title: 'Cloud / Infrastructure / DevOps', desc: '(Description not yet provided)' },
+  { title: 'QA / Test Automation', desc: '(Description not yet provided)' },
+  { title: 'Cybersecurity', desc: '(Description not yet provided)' },
+  { title: 'Data / Analytics', desc: '(Description not yet provided)' }
+];
+
+const pickerRow = document.getElementById('picker-row');
+services.forEach((s, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'picker-card';
+  btn.innerHTML = `<strong>${s.title}</strong><small>${s.desc}</small>`;
+  btn.addEventListener('click', () => selectService(i));
+  pickerRow.appendChild(btn);
+});
+const pickerCards = pickerRow.querySelectorAll('.picker-card');
+
+const bookHeadline = document.getElementById('book-headline');
+const bookDesc = document.getElementById('book-desc');
+const shotTag = document.getElementById('shot-tag');
+const shotCount = document.getElementById('shot-count');
+const shots = document.querySelectorAll('.shot');
+const dots = document.querySelectorAll('.shot-dots span');
+let shotIdx = 0;
+
+function selectService(i) {
+  const s = services[i];
+  pickerCards.forEach((c, ci) => c.classList.toggle('active', ci === i));
+  bookHeadline.textContent = s.title;
+  bookDesc.textContent = s.desc;
+  shotIdx = 0;
+  renderShot();
+}
+function renderShot() {
+  shots.forEach(sh => sh.classList.toggle('on', Number(sh.dataset.shot) === shotIdx));
+  dots.forEach((d, i) => d.classList.toggle('on', i === shotIdx));
+  shotTag.textContent = shotIdx === 0 ? 'DEMO 1 — OVERVIEW' : 'DEMO 2 — DETAIL';
+  shotCount.textContent = (shotIdx + 1) + ' / ' + shots.length;
+}
+document.getElementById('shot-next').addEventListener('click', () => { shotIdx = (shotIdx + 1) % shots.length; renderShot(); });
+document.getElementById('shot-prev').addEventListener('click', () => { shotIdx = (shotIdx - 1 + shots.length) % shots.length; renderShot(); });
+
+const pickerPrev = document.getElementById('picker-prev');
+const pickerNext = document.getElementById('picker-next');
+function updateArrows() {
+  pickerPrev.disabled = pickerRow.scrollLeft <= 4;
+  pickerNext.disabled = pickerRow.scrollLeft >= pickerRow.scrollWidth - pickerRow.clientWidth - 4;
+}
+pickerPrev.addEventListener('click', () => pickerRow.scrollBy({ left: -220, behavior: 'smooth' }));
+pickerNext.addEventListener('click', () => pickerRow.scrollBy({ left: 220, behavior: 'smooth' }));
+pickerRow.addEventListener('scroll', updateArrows);
+window.addEventListener('resize', updateArrows);
+
+selectService(2); // default to AI Solutions
+updateArrows();
 </script><script>document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>document.querySelector('.hero-contact').showModal()));</script>
-<script>
-(function(){
-  var look = document.getElementById('kmt-look');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!look || reduceMotion) return;
-  var maxTilt = 16;
-  window.addEventListener('mousemove', function(e){
-    var rect = look.getBoundingClientRect();
-    var cx = rect.left + rect.width / 2;
-    var cy = rect.top + rect.height / 2;
-    var dx = e.clientX - cx;
-    var dy = e.clientY - cy;
-    var rotateY = Math.max(-maxTilt, Math.min(maxTilt, dx / 22));
-    var rotateX = Math.max(-maxTilt, Math.min(maxTilt, -dy / 26));
-    look.style.transform = 'rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg)';
-  }, { passive: true });
-})();
-</script><dialog class="hero-contact hero-work-dialog"><h2>Our work</h2><p>Project case studies are being prepared. Explore our services to see what UNO can build.</p><form method="dialog"><button>Close</button></form></dialog><script>document.querySelector('[data-work]').addEventListener('click',()=>document.querySelector('.hero-work-dialog').showModal());</script></body>
+<dialog class="hero-contact hero-work-dialog"><h2>Our work</h2><p>Project case studies are being prepared. Explore our services to see what UNO can build.</p><form method="dialog"><button>Close</button></form></dialog><script>document.querySelector('[data-work]').addEventListener('click',()=>document.querySelector('.hero-work-dialog').showModal());</script></body>
 </html>
