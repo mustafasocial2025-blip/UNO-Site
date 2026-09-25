@@ -569,7 +569,7 @@ stage.querySelector('.kmt-live').textContent='INTERACTIVE 3D';
 stage.querySelector('.kmt-hint').textContent='Click: wave · double-click: walk · drag: turn';
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(34, 1, .1, 100);
-camera.position.set(0, -1.2, 16.4);
+camera.position.set(0, -.72, 11.5);
 
 const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -582,7 +582,6 @@ const goldLight = new THREE.MeshStandardMaterial({ color:0xffd15a, metalness:.78
 const blue = new THREE.MeshStandardMaterial({ color:0x0649d8, metalness:.72, roughness:.2 });
 const dark = new THREE.MeshStandardMaterial({ color:0x020820, metalness:.55, roughness:.16 });
 const cyan = new THREE.MeshStandardMaterial({ color:0x10eaff, emissive:0x079dff, emissiveIntensity:2.7, metalness:.25, roughness:.12 });
-const jointBlue = new THREE.MeshStandardMaterial({ color:0x0864e8, emissive:0x032a8a, emissiveIntensity:.8, metalness:.62, roughness:.2 });
 
 scene.add(new THREE.HemisphereLight(0x72baff, 0x020616, 2.5));
 const key = new THREE.DirectionalLight(0xffffff, 5.2); key.position.set(3, 5, 6); scene.add(key);
@@ -593,16 +592,12 @@ const robot = new THREE.Group();
 robot.position.y = -.45;
 scene.add(robot);
 
-const torso = new THREE.Mesh(new THREE.CapsuleGeometry(1.02, 1.18, 10, 24), gold);
-torso.scale.set(1.12, 1.02, .63); torso.position.y = -1.92; robot.add(torso);
+const torso = new THREE.Mesh(new THREE.CapsuleGeometry(1.23, 1.05, 10, 24), gold);
+torso.scale.set(1.18, 1, .7); torso.position.y = -1.85; robot.add(torso);
 const chest = new THREE.Mesh(new THREE.SphereGeometry(.92, 32, 20), dark);
-chest.scale.set(1.12, .94, .44); chest.position.set(0,-1.57,.68); robot.add(chest);
-const chestGem = new THREE.Mesh(new THREE.SphereGeometry(.3,24,16), cyan);
-chestGem.position.set(0,-1.38,1.09); robot.add(chestGem);
-const chestGemRim = new THREE.Mesh(new THREE.TorusGeometry(.36,.09,12,36),goldLight);
-chestGemRim.position.set(0,-1.38,1.08); robot.add(chestGemRim);
-const coreLine = new THREE.Mesh(new THREE.BoxGeometry(.12,.62,.08),cyan);
-coreLine.position.set(0,-1.94,1.02);
+chest.scale.set(1.22, .86, .48); chest.position.set(0,-1.45,.74); robot.add(chest);
+const chestGem = new THREE.Mesh(new THREE.OctahedronGeometry(.28, 0), cyan);
+chestGem.position.set(0,-1.35,1.16); chestGem.rotation.z = Math.PI/4; robot.add(chestGem);
 const collar = new THREE.Mesh(new THREE.TorusGeometry(1.02,.22,14,48,Math.PI), goldLight);
 collar.position.set(0,-.82,.25); collar.rotation.x = Math.PI/2; robot.add(collar);
 for(let j=0;j<3;j++){
@@ -615,29 +610,36 @@ for(let j=0;j<3;j++){
     wing.position.set(side*(.35+j*.18),-1.37-j*.055,1.17); wing.rotation.z=side*(.16+j*.04); robot.add(wing);
   }
 });
-const belt=new THREE.Mesh(new THREE.TorusGeometry(.86,.16,14,48),goldLight); belt.scale.set(1,.72,1); belt.rotation.x=Math.PI/2; belt.position.set(0,-2.58,.08); robot.add(belt);
-[-1,0,1].forEach(i=>{ const skirt=new THREE.Mesh(new THREE.BoxGeometry(i===0?.38:.42,i===0?.88:.7,.14),i===0?blue:goldLight); skirt.position.set(i*.42,-2.98,.55); skirt.rotation.z=-i*.2; robot.add(skirt); });
+const belt=new THREE.Mesh(new THREE.TorusGeometry(.96,.17,14,48),goldLight); belt.scale.set(1,.72,1); belt.rotation.x=Math.PI/2; belt.position.set(0,-2.53,.08); robot.add(belt);
+const beltGem=new THREE.Mesh(new THREE.OctahedronGeometry(.22),cyan); beltGem.position.set(0,-2.48,.94); beltGem.rotation.z=Math.PI/4; robot.add(beltGem);
+[-1,0,1].forEach(i=>{ const skirt=new THREE.Mesh(new THREE.BoxGeometry(.34,.72,.14),i===0?goldLight:blue); skirt.position.set(i*.38,-2.88,.58); skirt.rotation.z=-i*.08; robot.add(skirt); });
 
 const headPivot = new THREE.Group(); headPivot.position.y=.22; robot.add(headPivot);
 const headdress = new THREE.Mesh(new THREE.SphereGeometry(1.62,40,28), blue);
 headdress.scale.set(1.12,1.05,.5); headdress.position.z=-.12; headPivot.add(headdress);
 const face = new THREE.Mesh(new THREE.SphereGeometry(1.18,40,28), dark);
 face.scale.set(1,.86,.56); face.position.z=.63; headPivot.add(face);
-const faceRim = new THREE.Mesh(new THREE.TorusGeometry(1.04,.105,14,64),goldLight);
+const faceRim = new THREE.Mesh(new THREE.TorusGeometry(1.04,.085,14,64),goldLight);
 faceRim.scale.set(1,.86,1); faceRim.position.set(0,.01,1.08); headPivot.add(faceRim);
 const browBand = new THREE.Mesh(new THREE.TorusGeometry(1.31,.16,16,64,Math.PI),goldLight);
 browBand.position.set(0,.57,.58); browBand.rotation.z=Math.PI; browBand.scale.set(1,.72,1); headPivot.add(browBand);
 
 [-1,1].forEach(side=>{
-  const flap=new THREE.Mesh(new THREE.BoxGeometry(.76,2.32,.3),blue);
-  flap.position.set(side*1.22,-.12,.12); flap.rotation.z=-side*.16; headPivot.add(flap);
+  const flap=new THREE.Mesh(new THREE.BoxGeometry(.68,2.22,.34),blue);
+  flap.position.set(side*1.18,-.05,.13); flap.rotation.z=-side*.13; headPivot.add(flap);
   for(let j=0;j<4;j++){
     const band=new THREE.Mesh(new THREE.BoxGeometry(.72,.19,.39),goldLight);
-    band.position.set(side*1.22,.72-j*.5,.16); band.rotation.z=-side*.16; headPivot.add(band);
+    band.position.set(side*1.18,.72-j*.5,.15); band.rotation.z=-side*.13; headPivot.add(band);
   }
   const tip=new THREE.Mesh(new THREE.ConeGeometry(.38,.72,4),gold);
   tip.position.set(side*1.29,-1.25,.14); tip.rotation.z=side*.78; headPivot.add(tip);
 });
+const crown = new THREE.Mesh(new THREE.BoxGeometry(.72,.68,.38), goldLight);
+crown.position.set(0,1.36,.37); crown.rotation.z=Math.PI/4; headPivot.add(crown);
+const crownGem = new THREE.Mesh(new THREE.OctahedronGeometry(.23), cyan);
+crownGem.position.set(0,1.39,.69); crownGem.rotation.z=Math.PI/4; headPivot.add(crownGem);
+const cobra = new THREE.Mesh(new THREE.ConeGeometry(.13,.58,10),goldLight);
+cobra.position.set(0,1.66,.65); cobra.rotation.x=-.16; headPivot.add(cobra);
 
 const eyeGeo = new THREE.SphereGeometry(.22,24,16);
 const eyeL = new THREE.Mesh(eyeGeo, cyan), eyeR = new THREE.Mesh(eyeGeo, cyan);
@@ -653,46 +655,33 @@ const eyeGlintMat = new THREE.MeshBasicMaterial({color:0xffffff});
 const shoulderGeo = new THREE.SphereGeometry(.56,28,18);
 const armPivots=[];
 [-1,1].forEach(side=>{
-  const armPivot=new THREE.Group(); armPivot.position.set(side*1.25,-1.18,.05); robot.add(armPivot); armPivots.push(armPivot);
-  const shoulder=new THREE.Mesh(shoulderGeo,gold); shoulder.scale.set(1.35,.72,.82); armPivot.add(shoulder);
-  const shoulderLight=new THREE.Mesh(new THREE.SphereGeometry(.14,18,12),jointBlue); shoulderLight.position.set(side*.18,.01,.5); armPivot.add(shoulderLight);
-  const upper=new THREE.Mesh(new THREE.CapsuleGeometry(.27,.86,8,18),gold); upper.position.set(side*.08,-.78,0); upper.rotation.z=side*.06; armPivot.add(upper);
-  const elbow=new THREE.Mesh(new THREE.SphereGeometry(.31,20,14),goldLight); elbow.position.set(side*.13,-1.48,.04); armPivot.add(elbow);
-  const elbowLight=new THREE.Mesh(new THREE.SphereGeometry(.11,16,12),jointBlue); elbowLight.position.set(side*.13,-1.48,.31); armPivot.add(elbowLight);
-  const forearm=new THREE.Mesh(new THREE.CapsuleGeometry(.25,.82,8,18),goldLight); forearm.position.set(side*.16,-2.12,.03); forearm.rotation.z=-side*.06; armPivot.add(forearm);
-  const forearmLight=new THREE.Mesh(new THREE.BoxGeometry(.1,.48,.09),cyan); forearmLight.position.set(side*.16,-2.08,.3); armPivot.add(forearmLight);
-  const cuff=new THREE.Mesh(new THREE.TorusGeometry(.28,.075,10,28),blue);
-  cuff.rotation.x=Math.PI/2; cuff.position.set(side*.19,-2.58,.02); armPivot.add(cuff);
-  const palm=new THREE.Mesh(new THREE.BoxGeometry(.43,.48,.24),goldLight);
-  palm.position.set(side*.19,-2.84,.05); palm.rotation.z=-side*.04; armPivot.add(palm);
-  const palmPad=new THREE.Mesh(new THREE.BoxGeometry(.25,.28,.08),dark);
-  palmPad.position.set(side*.19,-2.84,.2); palmPad.rotation.z=-side*.04; armPivot.add(palmPad);
-  for(let f=0;f<4;f++){
-    const finger=new THREE.Mesh(new THREE.CapsuleGeometry(.065,.25,6,12),goldLight);
-    finger.position.set(side*.19+(f-1.5)*.095,-3.18,.06); finger.rotation.z=(f-1.5)*.035; armPivot.add(finger);
-    const fingerJoint=new THREE.Mesh(new THREE.BoxGeometry(.075,.08,.075),dark);
-    fingerJoint.position.set(side*.19+(f-1.5)*.095,-3.12,.13); armPivot.add(fingerJoint);
+  const armPivot=new THREE.Group(); armPivot.position.set(side*1.34,-1.18,.05); robot.add(armPivot); armPivots.push(armPivot);
+  const shoulder=new THREE.Mesh(shoulderGeo,gold); shoulder.scale.set(1.25,.8,.85); armPivot.add(shoulder);
+  const shoulderLight=new THREE.Mesh(new THREE.SphereGeometry(.13,18,12),cyan); shoulderLight.position.set(side*.23,.06,.48); armPivot.add(shoulderLight);
+  const upper=new THREE.Mesh(new THREE.CapsuleGeometry(.3,.75,8,18),gold); upper.position.set(side*.1,-.7,0); upper.rotation.z=side*.08; armPivot.add(upper);
+  const elbow=new THREE.Mesh(new THREE.SphereGeometry(.33,20,14),blue); elbow.position.set(side*.16,-1.3,0); armPivot.add(elbow);
+  const forearm=new THREE.Mesh(new THREE.CapsuleGeometry(.26,.68,8,18),goldLight); forearm.position.set(side*.18,-1.82,.03); forearm.rotation.z=-side*.08; armPivot.add(forearm);
+  const hand=new THREE.Mesh(new THREE.SphereGeometry(.32,20,14),dark); hand.scale.set(.86,1.05,.75); hand.position.set(side*.22,-2.36,.04); armPivot.add(hand);
+  for(let f=-1;f<=1;f++){
+    const finger=new THREE.Mesh(new THREE.CapsuleGeometry(.055,.2,5,10),goldLight);
+    finger.position.set(side*(.22+f*.065),-2.63,.08); finger.rotation.z=-side*.05; armPivot.add(finger);
   }
-  const thumb=new THREE.Mesh(new THREE.CapsuleGeometry(.075,.22,6,12),goldLight);
-  thumb.position.set(side*.42,-3.08,.08); thumb.rotation.z=-side*.18; armPivot.add(thumb);
 });
 
-const hip = new THREE.Mesh(new THREE.TorusGeometry(.72,.17,12,36),goldLight); hip.rotation.x=Math.PI/2; hip.position.y=-2.76; robot.add(hip);
+const hip = new THREE.Mesh(new THREE.TorusGeometry(.78,.18,12,36),goldLight); hip.rotation.x=Math.PI/2; hip.position.y=-2.73; robot.add(hip);
 const legPivots=[];
 [-1,1].forEach(side=>{
-  const legPivot=new THREE.Group(); legPivot.position.set(side*.48,-2.72,0); robot.add(legPivot); legPivots.push(legPivot);
-  const thigh=new THREE.Mesh(new THREE.CapsuleGeometry(.31,.92,8,18),gold); thigh.position.y=-.72; legPivot.add(thigh);
-  const knee=new THREE.Mesh(new THREE.SphereGeometry(.36,20,14),goldLight); knee.position.set(0,-1.52,.04); legPivot.add(knee);
-  const kneeLight=new THREE.Mesh(new THREE.SphereGeometry(.17,18,12),jointBlue); kneeLight.position.set(0,-1.52,.31); legPivot.add(kneeLight);
-  const shin=new THREE.Mesh(new THREE.CapsuleGeometry(.31,.96,8,18),goldLight); shin.position.set(0,-2.25,.02); legPivot.add(shin);
-  const foot=new THREE.Mesh(new THREE.SphereGeometry(.4,20,14),dark); foot.scale.set(1.05,.55,1.7); foot.position.set(0,-3.02,.3); legPivot.add(foot);
-  const ankleLight=new THREE.Mesh(new THREE.BoxGeometry(.16,.5,.12),cyan); ankleLight.position.set(0,-2.28,.33); legPivot.add(ankleLight);
-  const shinGuard=new THREE.Mesh(new THREE.BoxGeometry(.46,.82,.13),blue); shinGuard.position.set(0,-2.24,.29); legPivot.add(shinGuard);
-  const toeArmor=new THREE.Mesh(new THREE.BoxGeometry(.58,.18,.72),goldLight); toeArmor.position.set(0,-3.02,.54); toeArmor.rotation.x=-.12; legPivot.add(toeArmor);
+  const legPivot=new THREE.Group(); legPivot.position.set(side*.55,-2.66,0); robot.add(legPivot); legPivots.push(legPivot);
+  const thigh=new THREE.Mesh(new THREE.CapsuleGeometry(.34,.76,8,18),blue); thigh.position.y=-.66; legPivot.add(thigh);
+  const knee=new THREE.Mesh(new THREE.SphereGeometry(.34,20,14),gold); knee.position.set(0,-1.28,.04); legPivot.add(knee);
+  const shin=new THREE.Mesh(new THREE.CapsuleGeometry(.3,.7,8,18),goldLight); shin.position.set(0,-1.84,.02); legPivot.add(shin);
+  const foot=new THREE.Mesh(new THREE.SphereGeometry(.38,20,14),dark); foot.scale.set(1,.55,1.55); foot.position.set(0,-2.36,.22); legPivot.add(foot);
+  const ankleLight=new THREE.Mesh(new THREE.BoxGeometry(.19,.34,.12),cyan); ankleLight.position.set(0,-1.82,.32); legPivot.add(ankleLight);
+  const shinGuard=new THREE.Mesh(new THREE.BoxGeometry(.42,.62,.13),blue); shinGuard.position.set(0,-1.78,.3); legPivot.add(shinGuard);
 });
 
 const floorGlow = new THREE.Mesh(new THREE.CircleGeometry(2.7,64), new THREE.MeshBasicMaterial({color:0x086cff,transparent:true,opacity:.23,side:THREE.DoubleSide}));
-floorGlow.rotation.x=-Math.PI/2; floorGlow.position.y=-5.78; scene.add(floorGlow);
+floorGlow.rotation.x=-Math.PI/2; floorGlow.position.y=-5.08; scene.add(floorGlow);
 
 const pointer={x:0,y:0}, target={x:0,y:0};
 let dragging=false, lastDragX=0, manualYaw=0, dragDistance=0, waveUntil=0, walkMode=false;
