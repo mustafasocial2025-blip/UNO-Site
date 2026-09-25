@@ -207,7 +207,7 @@
 .kmt-eye-lid { position:absolute; z-index:3; top:14.7%; width:2.9%; height:0; border-radius:50%; background:#07143c; box-shadow:0 0 8px #0eeaff; transform:translateY(-50%); animation:kmtBlink 4.8s infinite; pointer-events:none; }
 .kmt-eye-lid.left { left:46.2%; } .kmt-eye-lid.right { right:46.2%; }
 @keyframes kmtBlink { 0%,45%,49%,100%{height:0} 47%{height:7%} }
-.kmt-label { position:absolute; z-index:3; left:18px; bottom:18px; display:flex; flex-direction:column; gap:3px; pointer-events:none; }
+.kmt-label { position:absolute; z-index:3; left:18px; top:18px; display:flex; flex-direction:column; gap:3px; pointer-events:none; }
 .kmt-label strong { color:#fff; font:900 18px/1 Arial; letter-spacing:.7px; }
 .kmt-label span { color:#8eeeff; font:700 10px/1.2 Arial; letter-spacing:1.6px; text-transform:uppercase; }
 .kmt-live { position:absolute; z-index:3; right:16px; top:16px; display:flex; align-items:center; gap:7px; padding:7px 11px; border-radius:999px; color:#bffaff; background:#06143dbd; border:1px solid #55eaff55; font:700 9px Arial; letter-spacing:1.2px; pointer-events:none; }
@@ -661,10 +661,10 @@ const armPivots=[];
   const upper=new THREE.Mesh(new THREE.CapsuleGeometry(.3,.75,8,18),gold); upper.position.set(side*.1,-.7,0); upper.rotation.z=side*.08; armPivot.add(upper);
   const elbow=new THREE.Mesh(new THREE.SphereGeometry(.33,20,14),blue); elbow.position.set(side*.16,-1.3,0); armPivot.add(elbow);
   const forearm=new THREE.Mesh(new THREE.CapsuleGeometry(.26,.68,8,18),goldLight); forearm.position.set(side*.18,-1.82,.03); forearm.rotation.z=-side*.08; armPivot.add(forearm);
-  const hand=new THREE.Mesh(new THREE.SphereGeometry(.32,20,14),dark); hand.scale.set(.86,1.05,.75); hand.position.set(side*.22,-2.36,.04); armPivot.add(hand);
+  const hand=new THREE.Mesh(new THREE.SphereGeometry(.37,20,14),goldLight); hand.scale.set(.9,1.12,.78); hand.position.set(side*.22,-2.37,.06); armPivot.add(hand);
   for(let f=-1;f<=1;f++){
-    const finger=new THREE.Mesh(new THREE.CapsuleGeometry(.055,.2,5,10),goldLight);
-    finger.position.set(side*(.22+f*.065),-2.63,.08); finger.rotation.z=-side*.05; armPivot.add(finger);
+    const finger=new THREE.Mesh(new THREE.CapsuleGeometry(.065,.24,5,10),goldLight);
+    finger.position.set(side*(.22+f*.075),-2.72,.11); finger.rotation.z=-side*.05; armPivot.add(finger);
   }
 });
 
@@ -675,7 +675,8 @@ const legPivots=[];
   const thigh=new THREE.Mesh(new THREE.CapsuleGeometry(.34,.76,8,18),blue); thigh.position.y=-.66; legPivot.add(thigh);
   const knee=new THREE.Mesh(new THREE.SphereGeometry(.34,20,14),gold); knee.position.set(0,-1.28,.04); legPivot.add(knee);
   const shin=new THREE.Mesh(new THREE.CapsuleGeometry(.3,.7,8,18),goldLight); shin.position.set(0,-1.84,.02); legPivot.add(shin);
-  const foot=new THREE.Mesh(new THREE.SphereGeometry(.38,20,14),dark); foot.scale.set(1,.55,1.55); foot.position.set(0,-2.36,.22); legPivot.add(foot);
+  const foot=new THREE.Mesh(new THREE.SphereGeometry(.43,20,14),goldLight); foot.scale.set(1.08,.66,1.65); foot.position.set(0,-2.4,.28); legPivot.add(foot);
+  const sole=new THREE.Mesh(new THREE.BoxGeometry(.62,.12,.82),dark); sole.position.set(0,-2.67,.32); legPivot.add(sole);
   const ankleLight=new THREE.Mesh(new THREE.BoxGeometry(.19,.34,.12),cyan); ankleLight.position.set(0,-1.82,.32); legPivot.add(ankleLight);
   const shinGuard=new THREE.Mesh(new THREE.BoxGeometry(.42,.62,.13),blue); shinGuard.position.set(0,-1.78,.3); legPivot.add(shinGuard);
 });
