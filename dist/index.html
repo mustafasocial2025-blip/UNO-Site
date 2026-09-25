@@ -212,7 +212,7 @@
 .kmt-label span { color:#8eeeff; font:700 10px/1.2 Arial; letter-spacing:1.6px; text-transform:uppercase; }
 .kmt-live { position:absolute; z-index:3; right:16px; top:16px; display:flex; align-items:center; gap:7px; padding:7px 11px; border-radius:999px; color:#bffaff; background:#06143dbd; border:1px solid #55eaff55; font:700 9px Arial; letter-spacing:1.2px; pointer-events:none; }
 .kmt-live::before { content:''; width:7px; height:7px; border-radius:50%; background:#34f4ff; box-shadow:0 0 12px #34f4ff; animation:kmtPulse 1.7s ease-in-out infinite; }
-.kmt-hint { position:absolute; z-index:3; right:16px; bottom:18px; color:#c6d6ff; font:600 10px Arial; letter-spacing:.4px; opacity:.75; pointer-events:none; }
+.kmt-hint { position:absolute; z-index:3; right:16px; top:54px; color:#c6d6ff; font:600 10px Arial; letter-spacing:.4px; opacity:.75; pointer-events:none; }
 @keyframes kmtPulse { 50% { opacity:.35; transform:scale(.72); } }
 .shot { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
 .shot.on { opacity: 1; pointer-events: auto; }
@@ -569,7 +569,7 @@ stage.querySelector('.kmt-live').textContent='INTERACTIVE 3D';
 stage.querySelector('.kmt-hint').textContent='Click: wave · double-click: walk · drag: turn';
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(34, 1, .1, 100);
-camera.position.set(0, -.72, 11.5);
+camera.position.set(0, -1.12, 14.6);
 
 const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
