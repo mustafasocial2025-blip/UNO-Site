@@ -580,9 +580,15 @@ stage.prepend(renderer.domElement);
 const gold = new THREE.MeshStandardMaterial({ color:0xf5a81c, metalness:.86, roughness:.22 });
 const goldLight = new THREE.MeshStandardMaterial({ color:0xffd15a, metalness:.78, roughness:.19 });
 const blue = new THREE.MeshStandardMaterial({ color:0x0649d8, metalness:.72, roughness:.2 });
+const royalBlue = new THREE.MeshStandardMaterial({ color:0x125ee0, emissive:0x03194f, emissiveIntensity:.48, metalness:.66, roughness:.22 });
 const dark = new THREE.MeshStandardMaterial({ color:0x020820, metalness:.55, roughness:.16 });
 const cyan = new THREE.MeshStandardMaterial({ color:0x10eaff, emissive:0x079dff, emissiveIntensity:2.7, metalness:.25, roughness:.12 });
 const jointBlue = new THREE.MeshStandardMaterial({ color:0x0864e8, emissive:0x032a8a, emissiveIntensity:.8, metalness:.62, roughness:.2 });
+const hoodPattern=document.createElement('canvas'); hoodPattern.width=512; hoodPattern.height=256;
+const hoodCtx=hoodPattern.getContext('2d');
+for(let i=0;i<16;i++){ hoodCtx.fillStyle=i%2?'#0750d6':'#f1a91b'; hoodCtx.fillRect(i*32,0,32,256); }
+const hoodTexture=new THREE.CanvasTexture(hoodPattern); hoodTexture.colorSpace=THREE.SRGBColorSpace;
+const hoodMaterial=new THREE.MeshStandardMaterial({map:hoodTexture,metalness:.68,roughness:.23});
 
 scene.add(new THREE.HemisphereLight(0x72baff, 0x020616, 2.5));
 const key = new THREE.DirectionalLight(0xffffff, 5.2); key.position.set(3, 5, 6); scene.add(key);
@@ -617,8 +623,8 @@ const abdomenAccent=new THREE.Mesh(new THREE.BoxGeometry(.13,.4,.08),jointBlue);
 [-1,0,1].forEach(i=>{ const skirt=new THREE.Mesh(new THREE.BoxGeometry(i===0?.38:.42,i===0?.88:.7,.14),i===0?blue:goldLight); skirt.position.set(i*.42,-2.98,.55); skirt.rotation.z=-i*.2; robot.add(skirt); });
 
 const headPivot = new THREE.Group(); headPivot.position.y=.22; robot.add(headPivot);
-const headdress = new THREE.Mesh(new THREE.SphereGeometry(1.62,40,28), blue);
-headdress.scale.set(1.12,1.05,.5); headdress.position.z=-.12; headPivot.add(headdress);
+const headdress = new THREE.Mesh(new THREE.SphereGeometry(1.62,40,28), hoodMaterial);
+headdress.scale.set(1.08,1.02,.22); headdress.position.z=-.08; headPivot.add(headdress);
 const face = new THREE.Mesh(new THREE.SphereGeometry(1.18,40,28), dark);
 face.scale.set(1,.86,.56); face.position.z=.63; headPivot.add(face);
 const faceRim = new THREE.Mesh(new THREE.TorusGeometry(1.04,.105,14,64),goldLight);
@@ -641,11 +647,11 @@ foreheadBand.position.set(0,.48,.87); foreheadBand.rotation.z=Math.PI; foreheadB
     stripe.position.set(side*(1.08+j*.055),.62-j*.36,.28);
     stripe.rotation.z=-side*.13; headPivot.add(stripe);
   }
-  const lappet=new THREE.Mesh(new THREE.BoxGeometry(.48,1.08,.24),nemesGold);
-  lappet.position.set(side*.93,-1.02,.72); lappet.rotation.z=-side*.035; headPivot.add(lappet);
+  const lappet=new THREE.Mesh(new THREE.BoxGeometry(.48,1.08,.18),nemesGold);
+  lappet.position.set(side*.93,-1.02,.38); lappet.rotation.z=-side*.035; headPivot.add(lappet);
   for(let j=0;j<3;j++){
     const lappetStripe=new THREE.Mesh(new THREE.BoxGeometry(.3,.13,.08),nemesBlue);
-    lappetStripe.position.set(side*.93,-.72-j*.27,.88); lappetStripe.rotation.z=-side*.035; headPivot.add(lappetStripe);
+    lappetStripe.position.set(side*.93,-.72-j*.27,.49); lappetStripe.rotation.z=-side*.035; headPivot.add(lappetStripe);
   }
 });
 
