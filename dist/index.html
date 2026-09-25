@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#092461">
   <meta name="description" content="An interactive prototype of UNO's founder section.">
-  <title>UNO — Services & KMT AI</title>
+  <title>UNO — Software & AI Company</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23092461'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='white' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='10' fill='none' stroke='%234bbaff' stroke-width='5'/%3E%3C/svg%3E">
   <style>
     :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
@@ -96,16 +96,19 @@
 .service-choice[aria-pressed=true]:after{background:#bd80ff;box-shadow:0 0 10px #bf80ff}
 .service-choice:focus-visible{outline:2px solid #80e7ff;outline-offset:4px}
 .s-num{font-size:10px;letter-spacing:2px;color:#ac80eb;display:block;margin-bottom:9px}.service-choice strong{font-size:17px;display:block;letter-spacing:-.3px}.service-choice small{font-size:12px;color:#9eaac5;display:block;margin-top:7px}
-.kmt-stage{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0;isolation:isolate}
+.kmt-stage{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0;isolation:isolate;perspective:900px}
 .kmt-ring{position:absolute;width:115%;aspect-ratio:1;border-radius:50%;border:1px solid #ae7cf84a;box-shadow:0 0 65px #9149ff25,inset 0 0 50px #4460ff20;top:8%;z-index:-1}
 .kmt-ring:before,.kmt-ring:after{content:'';position:absolute;inset:8%;border:1px dashed #819fff40;border-radius:50%}.kmt-ring:after{inset:-9%;border-style:solid;border-color:#7698ff12}
-.kmt-portrait{width:118%;max-width:none;mask-image:radial-gradient(ellipse 49% 52% at 50% 48%,black 64%,transparent 100%);mix-blend-mode:lighten;animation:kmt-breathe 6s ease-in-out infinite}
+.kmt-figure{position:relative;isolation:isolate;width:118%;max-width:none;mask-image:radial-gradient(ellipse 49% 52% at 50% 48%,black 64%,transparent 100%);mix-blend-mode:lighten;animation:kmt-breathe 6s ease-in-out infinite}
+.kmt-body-img{display:block;width:100%;height:auto}
+.kmt-head-crop{position:absolute;left:23.92%;top:0.96%;width:55.02%;height:43.54%;transform-style:preserve-3d;transition:transform .2s ease-out;will-change:transform;transform-origin:50% 88%}
+.kmt-head-img{display:block;width:100%;height:100%}
 .kmt-name{position:absolute;bottom:0;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;border:1px solid #b081f44d;border-radius:40px;background:#0b1334db;padding:12px 27px;box-shadow:0 0 30px #9c55ff20}.kmt-name b{display:block;letter-spacing:4px;font-size:14px}.kmt-name span{font-size:9px;letter-spacing:2px;color:#94acd5;display:block;margin-top:5px}
 .s-detail{max-width:1250px;margin:32px auto 0;padding:27px 30px;border-top:1px solid #939eff30;display:grid;grid-template-columns:1fr 1.3fr;gap:35px;align-items:center}.s-detail .eyebrow{color:#c18afc;font-size:10px;letter-spacing:2px}.s-detail h3{font-size:25px;margin:9px 0;letter-spacing:-.6px}.s-detail p{color:#b5bfd7;line-height:1.65;font-size:14px;margin:0}.s-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.s-tags span{padding:7px 11px;background:#162144;border:1px solid #859aff20;border-radius:7px;font-size:11px;color:#c9d7f1}
 .s-foot{max-width:1250px;margin:15px auto 0;font-size:10px;letter-spacing:2px;color:#7384a8;display:flex;justify-content:space-between}
 @keyframes kmt-breathe{50%{transform:translateY(-7px)}}
-@media(max-width:750px){.services{padding-top:28px}.s-heading{letter-spacing:-1.6px;margin-top:30px}.s-top{font-size:8px;letter-spacing:1px}.s-stage{grid-template-columns:1fr 1fr;gap:12px}.kmt-stage{grid-column:1/-1;grid-row:1;min-height:290px;max-width:290px;width:100%;margin:auto}.kmt-portrait{width:290px}.kmt-ring{width:270px}.s-column{gap:12px}.service-choice{padding:14px;min-height:120px}.service-choice strong{font-size:14px}.service-choice small{font-size:11px;line-height:1.4}.service-choice:after{display:none}.s-detail{grid-template-columns:1fr;gap:8px;padding:24px 0}.s-foot{font-size:8px;letter-spacing:1px}}
-@media(prefers-reduced-motion:reduce){.kmt-portrait{animation:none}.service-choice{transition:none}}
+@media(max-width:750px){.services{padding-top:28px}.s-heading{letter-spacing:-1.6px;margin-top:30px}.s-top{font-size:8px;letter-spacing:1px}.s-stage{grid-template-columns:1fr 1fr;gap:12px}.kmt-stage{grid-column:1/-1;grid-row:1;min-height:290px;max-width:290px;width:100%;margin:auto}.kmt-figure{width:290px}.kmt-ring{width:270px}.s-column{gap:12px}.service-choice{padding:14px;min-height:120px}.service-choice strong{font-size:14px}.service-choice small{font-size:11px;line-height:1.4}.service-choice:after{display:none}.s-detail{grid-template-columns:1fr;gap:8px;padding:24px 0}.s-foot{font-size:8px;letter-spacing:1px}}
+@media(prefers-reduced-motion:reduce){.kmt-figure{animation:none}.service-choice{transition:none}.kmt-head-crop{transition:none}}
 
 /* User-authorized logo-blue background preview only. */
 .services, .founder {
@@ -115,10 +118,47 @@
     radial-gradient(ellipse 45% 45% at 50% -12%, #006aff 0%, #003a9580 38%, transparent 75%),
     radial-gradient(ellipse at 50% 48%, #124edd 0%, #082367 57%, #030d29 100%);
 }
+
+/* Hero scoped to the approved reference composition. */
+.uno-hero{position:relative;isolation:isolate;width:100%;aspect-ratio:1586/992;min-height:0;background:#0745bc url('./hero-scene.png') center/100% 100% no-repeat;font-family:Arial,Helvetica,sans-serif;overflow:hidden;color:white}
+.hero-nav{position:absolute;inset:0 0 auto;height:14%;z-index:2}.hero-logo{position:absolute;left:4%;top:21%;width:12%;height:66%;display:block}.hero-logo img{display:none}.hero-links{position:absolute;right:4.3%;top:29%;display:flex;gap:3.5vw;align-items:center}.hero-links a,.hero-links button{font:400 1.28vw Arial,sans-serif;color:white;text-decoration:none;background:none;border:0;cursor:pointer;padding:0}.hero-links button:last-child{border:1px solid white;border-radius:1.3vw;padding:1.05vw 2.8vw;font-weight:600}.hero-links a:hover{text-decoration:underline;text-underline-offset:5px}
+.hero-main{position:absolute;inset:0;pointer-events:none}.hero-copy{position:absolute;inset:0;pointer-events:none}.hero-copy>*{pointer-events:auto}.hero-kicker{position:absolute;left:4.6%;top:23.25%;margin:0;font-size:1.06vw;letter-spacing:.3vw;font-weight:700;color:#93edff}
+.hero-title{position:absolute;left:4.6%;top:27.1%;margin:0;font:750 6.2vw/1.04 Arial,Helvetica,sans-serif;letter-spacing:-.19vw;white-space:nowrap;color:white;text-transform:none;text-shadow:none;width:auto;height:auto}
+.hero-title em{display:block;font-style:normal;width:fit-content;background:linear-gradient(100deg,#f56cec,#be4cff 43%,#05cef2 100%);background-clip:text;-webkit-background-clip:text;color:transparent;padding-bottom:.5vw}
+.hero-description{position:absolute;left:4.65%;top:50.7%;width:41%;margin:0;font:400 1.77vw/1.36 Arial,sans-serif;color:#d8e1ff}
+.hero-actions{position:absolute;left:4.65%;top:62.15%;display:flex;gap:1.6vw}.hero-actions a,.hero-actions button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;font:700 1.43vw Arial,sans-serif;text-decoration:none;border:2px solid white;border-radius:1.65vw;height:4.5vw;cursor:pointer;transition:box-shadow .2s}.hero-actions button{background:#fff;color:#0443cd;width:20.1vw}.hero-actions a{background:transparent;color:white;width:17.8vw}.hero-actions a:hover,.hero-actions button:hover{box-shadow:0 0 24px #61dfff88}
+.hero-art{display:none}.hero-bottom{position:absolute;left:4.4%;right:4.3%;bottom:8.4%;display:flex;justify-content:space-between;align-items:center;font:400 1.26vw Arial,sans-serif;letter-spacing:.17vw}.hero-bottom a{font-size:1.25vw;color:white;text-decoration:none;letter-spacing:0}.hero-bottom a:hover{text-decoration:underline}
+.hero-contact{color:white;background:#124edd;border:1px solid #7fceff;border-radius:20px;padding:32px;max-width:440px;width:90%;box-shadow:0 20px 80px #001a7380}.hero-contact::backdrop{background:#073aab99;backdrop-filter:blur(8px)}.hero-contact h2{font-size:26px;margin-top:0}.hero-contact p{font-size:16px;line-height:1.6}.hero-contact button{background:white;color:#1047c4;padding:12px 20px;border:0;border-radius:10px;font-size:16px;cursor:pointer}
+.uno-hero a:focus-visible,.uno-hero button:focus-visible{outline:3px solid #a4f5ff;outline-offset:5px}
+@media(max-width:700px){.uno-hero{aspect-ratio:auto;min-height:930px;background-size:auto 620px;background-position:right -70px bottom;background-color:#0843ba}.hero-nav{height:95px;background:#0843ba}.hero-logo{left:20px;top:16px;width:125px;height:65px;background:url('./uno-logo.png') 50% 37%/260px auto no-repeat;mix-blend-mode:screen}.hero-links{right:20px;top:27px;gap:17px}.hero-links a,.hero-links button{font-size:14px}.hero-links .hero-about,.hero-links .hero-work,.hero-links .hero-contact-link{display:none}.hero-links button:last-child{padding:12px 15px;border-radius:12px}.hero-kicker{left:24px;top:124px;font-size:11px;letter-spacing:2px}.hero-title{left:24px;top:157px;font-size:clamp(31px,6.3vw,44px);letter-spacing:-1px;line-height:1.18}.hero-description{left:24px;top:264px;width:calc(100% - 48px);font-size:17px;line-height:1.5}.hero-actions{left:24px;top:370px;gap:12px}.hero-actions a,.hero-actions button{font-size:13px;width:auto;height:48px;padding:0 16px;border-radius:13px}.hero-bottom{bottom:24px;left:24px;right:24px;font-size:11px;letter-spacing:1px}.hero-bottom a{font-size:12px}}
+@media(max-width:700px){.uno-hero:before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(#0843ba 29%,transparent 48%);pointer-events:none}}
+@media(prefers-reduced-motion:reduce){.hero-actions a,.hero-actions button{transition:none}}
+
+/* Requested hero background treatment on the two following sections. */
+.services, .founder { background: #0745bc url('./blue-floor.png') center / 100% 100% no-repeat; }
+/* Preview: narrow blue transitions, with the artwork position preserved. */
+.uno-hero { box-shadow: inset 0 -72px 48px -40px #0745bc; }
+.services { box-shadow: inset 0 72px 48px -40px #0745bc, inset 0 -72px 48px -40px #0745bc; }
+.founder { box-shadow: inset 0 72px 48px -40px #0745bc; }
+.s-detail {
+  position: relative;
+  isolation: isolate;
+}
+.s-detail::before {
+  content: "";
+  position: absolute;
+  inset: -12px -16px;
+  z-index: -1;
+  pointer-events: none;
+  background: #1045b8e6;
+  filter: blur(16px);
+  border-radius: 26px;
+}
+.s-detail p { color: #edf3ff; }
 </style>
 </head>
 <body>
-  <main><section class="services" aria-labelledby="services-heading"><div class="s-top"><b>UNO<i> /</i></b><span>Software · Intelligence · Possibility</span><span>01 — SERVICES</span></div><h2 class="s-heading" id="services-heading">Your ambition.<br><em>Our intelligence.</em></h2><p class="s-intro">Eleven capabilities. One connected partner.<br>Select a service to explore what we can build together.</p><div class="s-stage"><div class="s-column"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="0"><span class="s-num">01 /</span><strong>Custom Software</strong><small>Built around your business</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="1"><span class="s-num">02 /</span><strong>Websites & Mobile</strong><small>Experiences people return to</small></button><button class="service-choice" aria-pressed="true" aria-controls="service-detail" data-service="2"><span class="s-num">03 /</span><strong>AI & Automation</strong><small>Less repetition. More possibility.</small></button></div><div class="kmt-stage"><div class="kmt-ring" aria-hidden="true"></div><img class="kmt-portrait" src="./kmt-ai.png" alt="KMT AI, UNO's gold and blue robotic Pharaoh with a glass visor and cyan eyes"><div class="kmt-name"><b>KMT AI</b><span>MEET YOUR DIGITAL ALLY</span></div></div><div class="s-column right"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="3"><span class="s-num">04 /</span><strong>SaaS Products</strong><small>Software from UNO</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="4"><span class="s-num">05 /</span><strong>Integrations & Cloud</strong><small>Everything working together</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="5"><span class="s-num">06 /</span><strong>Quality, Security & Data</strong><small>Confidence in every decision</small></button></div></div><div class="s-detail" id="service-detail" aria-live="polite" aria-atomic="true"><div><span class="eyebrow" id="s-category"></span><h3 id="s-title"></h3></div><div><p id="s-description"></p><div class="s-tags" id="s-tags"></div></div></div><div class="s-foot"><span>BUILT FOR YOUR NEXT CHAPTER</span><span>EXPLORE ABOVE ↑</span></div></section>
+  <main><section class="uno-hero" aria-labelledby="hero-heading"><nav class="hero-nav" aria-label="Main navigation"><a class="hero-logo" href="#hero-heading" aria-label="UNO home"><img src="./uno-logo.png" alt="UNO — Empowering Innovation"></a><div class="hero-links"><a href="#services-heading">Services</a><button class="hero-work" type="button" data-work>Our Work</button><a class="hero-about" href="#founder-title">About</a><button class="hero-contact-link" type="button" data-contact>Contact</button><button type="button" data-contact>Let’s talk</button></div></nav><div class="hero-main"><div class="hero-copy"><p class="hero-kicker">SOFTWARE &amp; AI COMPANY</p><h2 class="hero-title" id="hero-heading">Your next big idea.<em>Built with UNO.</em></h2><p class="hero-description">Custom software, AI and automation that turn ambitious ideas into useful digital experiences.</p><div class="hero-actions"><button type="button" data-contact>Discuss your project&nbsp; →</button><a href="#services-heading">Explore services</a></div></div><img class="hero-art" src="./hero-target.png" alt="A polished silver target with a cyan dart hitting its glowing center"></div><div class="hero-bottom"><span>— &nbsp; Empowering Innovation.</span><a href="#services-heading">↓ &nbsp; Discover UNO</a></div></section><dialog class="hero-contact"><h2>Let’s talk about your project</h2><p>UNO’s contact details will be available here soon.</p><form method="dialog"><button>Close</button></form></dialog><section class="services" aria-labelledby="services-heading"><div class="s-top"><b>UNO<i> /</i></b><span>Software · Intelligence · Possibility</span><span>01 — SERVICES</span></div><h2 class="s-heading" id="services-heading">Your ambition.<br><em>Our intelligence.</em></h2><p class="s-intro">Eleven capabilities. One connected partner.<br>Select a service to explore what we can build together.</p><div class="s-stage"><div class="s-column"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="0"><span class="s-num">01 /</span><strong>Custom Software</strong><small>Built around your business</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="1"><span class="s-num">02 /</span><strong>Websites & Mobile</strong><small>Experiences people return to</small></button><button class="service-choice" aria-pressed="true" aria-controls="service-detail" data-service="2"><span class="s-num">03 /</span><strong>AI & Automation</strong><small>Less repetition. More possibility.</small></button></div><div class="kmt-stage" id="kmt-stage"><div class="kmt-ring" aria-hidden="true"></div><div class="kmt-figure"><img class="kmt-body-img" src="./kmt-body.png" alt="KMT AI, UNO's gold and blue robotic Pharaoh with a glass visor and cyan eyes"><div class="kmt-head-crop" id="kmt-look"><img class="kmt-head-img" src="./kmt-head.png" alt=""></div></div><div class="kmt-name"><b>KMT AI</b><span>MEET YOUR DIGITAL ALLY</span></div></div><div class="s-column right"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="3"><span class="s-num">04 /</span><strong>SaaS Products</strong><small>Software from UNO</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="4"><span class="s-num">05 /</span><strong>Integrations & Cloud</strong><small>Everything working together</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="5"><span class="s-num">06 /</span><strong>Quality, Security & Data</strong><small>Confidence in every decision</small></button></div></div><div class="s-detail" id="service-detail" aria-live="polite" aria-atomic="true"><div><span class="eyebrow" id="s-category"></span><h3 id="s-title"></h3></div><div><p id="s-description"></p><div class="s-tags" id="s-tags"></div></div></div><div class="s-foot"><span>BUILT FOR YOUR NEXT CHAPTER</span><span>EXPLORE ABOVE ↑</span></div></section>
     <section class="founder" aria-labelledby="founder-title">
       <div class="inner">
         <div class="scene" aria-hidden="true"><div class="halo"></div><div class="orbit"></div><div class="floor"></div></div>
@@ -131,5 +171,23 @@
 const serviceData=[["Custom Software", "Built around your business", "Applications that fit the way you work.", "We design custom web applications, internal systems, and platforms around your team\u2019s processes and your customers\u2019 needs.", ["Web applications", "Internal systems", "Custom platforms"]], ["Websites & Mobile", "Experiences people return to", "Your next idea. On every screen.", "From a distinctive website to a dedicated mobile app, we create clear, useful digital experiences that connect your business with its audience.", ["Website development", "Mobile app development"]], ["AI & Automation", "Less repetition. More possibility.", "Put intelligence to work.", "Connect AI agents, copilots, and AI-powered applications with automated workflows to help your team handle repetitive tasks and focus on meaningful work.", ["AI agents & copilots", "AI-powered applications", "Business workflows"]], ["SaaS Products", "Software from UNO", "Useful software. Ready to subscribe.", "Explore UNO\u2019s own subscription software, designed to address recurring business needs and improve over time.", ["UNO software products", "Subscription access"]], ["Integrations & Cloud", "Everything working together", "Connect your tools. Build your foundation.", "Bring systems together through APIs and integrations, supported by cloud infrastructure and DevOps practices that make software easier to deploy and maintain.", ["Software integrations", "APIs", "Cloud & infrastructure", "DevOps"]], ["Quality, Security & Data", "Confidence in every decision", "Test it. Protect it. Understand it.", "Strengthen your software with quality assurance, automated tests, and cybersecurity services, and turn your business data into useful reporting and analytics.", ["QA & test automation", "Cybersecurity", "Data & analytics"]]];
 function selectService(i){const g=serviceData[i];document.querySelectorAll('[data-service]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.service)===i)));document.getElementById('s-category').textContent=g[0].toUpperCase();document.getElementById('s-title').textContent=g[2];document.getElementById('s-description').textContent=g[3];document.getElementById('s-tags').replaceChildren(...g[4].map(t=>{const x=document.createElement('span');x.textContent=t;return x}));}
 document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>selectService(Number(b.dataset.service))));selectService(2);
-</script></body>
+</script><script>document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>document.querySelector('.hero-contact').showModal()));</script>
+<script>
+(function(){
+  var look = document.getElementById('kmt-look');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!look || reduceMotion) return;
+  var maxTilt = 16;
+  window.addEventListener('mousemove', function(e){
+    var rect = look.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    var dx = e.clientX - cx;
+    var dy = e.clientY - cy;
+    var rotateY = Math.max(-maxTilt, Math.min(maxTilt, dx / 22));
+    var rotateX = Math.max(-maxTilt, Math.min(maxTilt, -dy / 26));
+    look.style.transform = 'rotateX(' + rotateX.toFixed(2) + 'deg) rotateY(' + rotateY.toFixed(2) + 'deg)';
+  }, { passive: true });
+})();
+</script><dialog class="hero-contact hero-work-dialog"><h2>Our work</h2><p>Project case studies are being prepared. Explore our services to see what UNO can build.</p><form method="dialog"><button>Close</button></form></dialog><script>document.querySelector('[data-work]').addEventListener('click',()=>document.querySelector('.hero-work-dialog').showModal());</script></body>
 </html>

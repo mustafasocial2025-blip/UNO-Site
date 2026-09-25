@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#092461">
+  <meta name="description" content="An interactive prototype of UNO's founder section.">
+  <title>UNO — The Mind Behind UNO</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23092461'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='white' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='10' fill='none' stroke='%234bbaff' stroke-width='5'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #061b50; color: #fff; }
+    .founder {
+      position: relative; isolation: isolate; overflow: hidden;
+      background: radial-gradient(ellipse at 52% 48%, #124998 0%, #092e75 48%, #061b50 100%);
+    }
+    .founder::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background-image: linear-gradient(#b6d5ff12 1px, transparent 1px), linear-gradient(90deg, #b6d5ff12 1px, transparent 1px);
+      background-size: 4.8vw 4.8vw;
+    }
+    .inner { width: 100%; max-width: 2000px; margin: auto; padding: 5.5vw 3vw 5vw; position: relative; }
+    h1 {
+      margin: 0; position: relative; z-index: 1;
+      font-weight: 900; text-transform: uppercase; letter-spacing: -.065em;
+      text-shadow: 0 0 45px #b8d5ff12;
+    }
+    h1 span { display: block; white-space: nowrap; text-align: center; line-height: .82; }
+    h1 span:nth-child(1) { font-size: clamp(1px, 18.1vw, 362px); }
+    h1 span:nth-child(2) { font-size: clamp(1px, 24.2vw, 484px); margin-top: .6vw; }
+    h1 span:nth-child(3) { font-size: clamp(1px, 29vw, 580px); margin-top: .6vw; }
+    .card-wrap { position: absolute; z-index: 3; width: 24%; left: 10%; top: 47%; }
+    .card { width: 100%; transform: rotate(5deg); transition: transform .3s ease; filter: drop-shadow(0 22px 24px #0006); }
+    .card img { width: 100%; height: auto; display: block; }
+    @media (hover: hover) { .card-wrap:hover .card { transform: rotate(2deg) translateY(-8px); } }
+    @media (max-width: 650px) {
+      .inner { padding-top: 13vw; padding-bottom: 13vw; }
+      .founder::before { background-size: 10vw 10vw; }
+      .card-wrap { width: 27%; left: 7%; top: 48%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card-wrap:hover .card { transform: rotate(5deg); } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="founder" aria-labelledby="founder-title">
+      <div class="inner">
+        <h1 id="founder-title"><span>The mind</span><span>behind</span><span>UNO</span></h1>
+        <div class="card-wrap"><div class="card"><img src="./mustafa-card.png" alt="Mustafa, Founder, depicted as a cartoon robotic Pharaoh on a silver card"></div></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
