@@ -377,6 +377,14 @@
 .services { box-shadow: inset 0 72px 48px -40px #0745bc, inset 0 -72px 48px -40px #0745bc; }
 .founder { box-shadow: inset 0 72px 48px -40px #0745bc; }
 .contact { box-shadow: inset 0 72px 48px -40px #0745bc; }
+.site-footer{position:relative;background:linear-gradient(145deg,#020719,#061b58 58%,#092b82);color:#fff;border-top:1px solid #86dfff35;padding:64px 5% 26px;font-family:Arial,sans-serif;overflow:hidden}
+.site-footer::before{content:'';position:absolute;width:420px;height:420px;right:-160px;top:-260px;border-radius:50%;background:#0fe1ff14;filter:blur(12px);pointer-events:none}
+.footer-main{position:relative;display:grid;grid-template-columns:minmax(230px,1.5fr) repeat(3,minmax(130px,1fr));gap:46px;max-width:1280px;margin:auto}
+.footer-brand-logo{display:block;width:220px;height:70px;overflow:hidden}.footer-brand-logo img{display:block;width:100%;height:auto}.footer-brand p{max-width:340px;margin:20px 0 0;color:#b8c8ee;font-size:15px;line-height:1.7}
+.footer-column h3{margin:4px 0 18px;color:#82eaff;font-size:12px;letter-spacing:1.8px;text-transform:uppercase}.footer-column a,.footer-column button{display:block;margin:0 0 13px;padding:0;border:0;background:none;color:#dce6ff;font:500 14px Arial,sans-serif;text-decoration:none;cursor:pointer;text-align:left}.footer-column a:hover,.footer-column button:hover{color:#6feeff}
+.footer-bottom{position:relative;display:flex;justify-content:space-between;gap:24px;max-width:1280px;margin:48px auto 0;padding-top:22px;border-top:1px solid #ffffff1c;color:#8192c1;font-size:12px}.footer-bottom a{color:#aebde5;text-decoration:none}
+@media(max-width:800px){.site-footer{padding:48px 24px 24px}.footer-main{grid-template-columns:1fr 1fr;gap:34px}.footer-brand{grid-column:1/-1}.footer-bottom{flex-direction:column;margin-top:36px}}
+@media(max-width:480px){.footer-main{grid-template-columns:1fr}.footer-brand{grid-column:auto}}
 </style>
 </head>
 <body>
@@ -500,6 +508,18 @@
         <div class="card-wrap"><div class="card"><img src="./mustafa-card.png" alt="Mustafa, Founder, depicted as a cartoon robotic Pharaoh on a silver card"></div></div>
       </div>
     </section>
+    <footer class="site-footer" id="site-footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="footer-brand-logo" href="#hero-heading" aria-label="UNO home"><img src="./uno-logo-transparent.png" alt="UNO — Empowering Innovation"></a>
+          <p>Custom software, AI, and automation built to turn ambitious ideas into useful digital experiences.</p>
+        </div>
+        <div class="footer-column"><h3>Services</h3><a href="#services-heading">Custom Software</a><a href="#services-heading">AI Solutions</a><a href="#services-heading">Business Automation</a><a href="#services-heading">Web &amp; Mobile</a></div>
+        <div class="footer-column"><h3>Company</h3><a href="#founder-title">About UNO</a><button type="button" data-work>Our Work</button><button type="button" data-contact>Contact</button></div>
+        <div class="footer-column"><h3>Connect</h3><button type="button" data-contact>Discuss a project</button><a href="#global-heading">Global Presence</a><a href="#hero-heading">Back to top ↑</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 UNO Software &amp; AI Company. All rights reserved.</span><span><a href="#">Privacy</a> · <a href="#">Terms</a></span></div>
+    </footer>
   </main>
 <script>
 // 11 individual services, de-duplicated (Custom Software's scope excludes web/mobile, which are their own entries)
