@@ -195,11 +195,12 @@
   position: relative; width: 100%; height: 100%; min-height: 420px;
   border-radius: 20px; overflow: hidden; background: #0b1230cc; border: 1px solid #ffffff20;
 }
-.img-card:has(#kmt-stage) { background:transparent; border:0; overflow:visible; }
 .kmt-stage { position:absolute; inset:0; overflow:hidden; background:radial-gradient(circle at 50% 34%,#0d54c9 0%,#071b55 44%,#030a27 100%); }
-.img-card:has(#kmt-stage) .kmt-stage { background:transparent; overflow:visible; }
 .kmt-stage::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none; background:radial-gradient(circle at 50% 48%,transparent 20%,#0207198c 100%),linear-gradient(120deg,#2d83ff24,transparent 38%,#915bff1f); }
-.img-card:has(#kmt-stage) .kmt-stage::before { display:none; }
+.kmt-stage.site-companion { position:fixed; inset:auto 22px 18px auto; width:250px; height:310px; z-index:100; background:transparent; overflow:visible; }
+.kmt-stage.site-companion::before, .kmt-stage.site-companion .kmt-label, .kmt-stage.site-companion .kmt-live, .kmt-stage.site-companion .kmt-hint { display:none; }
+.project-placeholder { position:absolute; inset:0; display:grid; place-items:center; text-align:center; color:#a9baf0; background:linear-gradient(145deg,#111d4f,#071637); font:800 12px/1.5 Arial; letter-spacing:1.6px; text-transform:uppercase; }
+.project-placeholder span { display:block; margin-top:8px; color:#6f83c4; font-size:10px; letter-spacing:.8px; }
 .kmt-stage canvas { position:absolute; inset:0; z-index:1; width:100%; height:100%; display:block; cursor:grab; }
 .kmt-stage canvas:active { cursor:grabbing; }
 .kmt-reference-image { position:absolute; inset:-2%; z-index:1; width:104%; height:104%; object-fit:contain; object-position:center; transition:transform .12s ease-out; will-change:transform; }
@@ -404,6 +405,7 @@
         <div class="page right">
           <div class="book-imgs">
             <div class="img-card" id="img-card">
+              <div class="project-placeholder">Project images<span>Add your work here</span></div>
               <div class="kmt-stage" id="kmt-stage" role="img" aria-label="Interactive 3D KMT AI robotic Pharaoh">
                 <img class="kmt-reference-image" src="./kmt-fullbody-v1.png" alt="Full-body KMT AI robotic Pharaoh">
                 <img class="kmt-reference-image kmt-head-layer" src="./kmt-fullbody-v1.png" alt="">
@@ -567,6 +569,8 @@ updateArrows();
 import * as THREE from './three.module.js';
 
 const stage = document.getElementById('kmt-stage');
+document.body.appendChild(stage);
+stage.classList.add('site-companion');
 stage.classList.add('is-3d');
 stage.querySelector('.kmt-live').textContent='INTERACTIVE 3D';
 stage.querySelector('.kmt-hint').textContent='Click: wave · double-click: walk · drag: turn';
