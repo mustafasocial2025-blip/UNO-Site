@@ -634,10 +634,10 @@ foreheadBand.position.set(0,.48,.87); foreheadBand.rotation.z=Math.PI; foreheadB
   panelShape.lineTo(side*1.66,-1.2);
   panelShape.lineTo(side*.88,-.91);
   panelShape.closePath();
-  const panel=new THREE.Mesh(new THREE.ExtrudeGeometry(panelShape,{depth:.22,bevelEnabled:true,bevelSize:.045,bevelThickness:.045,bevelSegments:2}),nemesBlue);
+  const panel=new THREE.Mesh(new THREE.ExtrudeGeometry(panelShape,{depth:.22,bevelEnabled:true,bevelSize:.045,bevelThickness:.045,bevelSegments:2}),nemesGold);
   panel.position.z=.08; headPivot.add(panel);
   for(let j=0;j<5;j++){
-    const stripe=new THREE.Mesh(new THREE.BoxGeometry(.68,.14,.3),nemesGold);
+    const stripe=new THREE.Mesh(new THREE.BoxGeometry(.72,.2,.3),nemesBlue);
     stripe.position.set(side*(1.08+j*.055),.62-j*.36,.28);
     stripe.rotation.z=-side*.13; headPivot.add(stripe);
   }
