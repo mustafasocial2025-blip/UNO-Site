@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#092461">
+  <meta name="description" content="An interactive prototype of UNO's founder section.">
+  <title>UNO — The Mind Behind UNO</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23092461'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='white' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='10' fill='none' stroke='%234bbaff' stroke-width='5'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: dark; font-family: Inter, Arial, Helvetica, sans-serif; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #071a48; color: #fff; }
+    .founder {
+      min-height: 100svh;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      display: grid;
+      align-items: center;
+      background: #0b3278;
+    }
+    .founder::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background-image: linear-gradient(rgba(202,225,255,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(202,225,255,.07) 1px, transparent 1px);
+      background-size: 90px 90px;
+    }
+    .inner {
+      width: 100%; height: 100svh; min-height: 650px; margin: auto;
+      padding: 1vh 2.5vw;
+      position: relative; display: block;
+    }
+    h1 {
+      margin: 0; width: 100%; height: 100%; position: relative; z-index: 1;
+      display: flex; flex-direction: column; align-items: stretch; justify-content: center; gap: 0;
+      line-height: .82; letter-spacing: -.075em;
+      font-weight: 800; text-transform: uppercase; color: #fff;
+    }
+    h1 span { display: block; white-space: nowrap; text-align: center; }
+    h1 span:nth-child(1) { font-size: min(18vw, 30vh); }
+    h1 span:nth-child(2) { font-size: min(24vw, 34vh); }
+    h1 span:nth-child(3) { font-size: min(28vw, 35vh); }
+    .card-wrap {
+      position: absolute; z-index: 3; width: min(27vw, 380px);
+      right: 2%; bottom: 2%;
+      display: grid; place-items: center; perspective: 1000px;
+    }
+    .card {
+      width: 100%; display: block; border: 0; background: transparent; padding: 0;
+      transform: rotate(-3deg) translate3d(0,0,0); transition: transform .35s ease, filter .35s ease;
+      filter: drop-shadow(0 35px 48px rgba(0, 14, 49, .42));
+      cursor: default;
+    }
+    .card img { display: block; width: 100%; height: auto; }
+    .card-wrap:hover .card { transform: rotate(-1deg) translateY(-12px) scale(1.025); filter: drop-shadow(0 48px 54px rgba(0, 11, 42, .48)); }
+    @media (max-width: 900px) {
+      .card-wrap { width: 28vw; right: 1%; }
+    }
+    @media (max-width: 650px) {
+      .founder { min-height: auto; }
+      .inner { height: 100svh; min-height: 570px; padding: 0 2vw; }
+      h1 span:nth-child(1) { font-size: 18vw; }
+      h1 span:nth-child(2) { font-size: 23vw; }
+      h1 span:nth-child(3) { font-size: 29vw; text-align: left; padding-left: 2vw; }
+      .card-wrap { width: 39vw; right: 1%; bottom: 5%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card-wrap:hover .card { transform: rotate(-3deg); } }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="founder" aria-labelledby="founder-title">
+      <div class="inner">
+        <h1 id="founder-title"><span>The mind</span><span>behind</span><span>UNO</span></h1>
+        <div class="card-wrap"><div class="card"><img src="./mustafa-card.png" alt="Mustafa, Founder, depicted as a cartoon robotic Pharaoh on a silver card"></div></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

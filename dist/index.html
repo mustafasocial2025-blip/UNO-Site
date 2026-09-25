@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#092461">
+  <meta name="description" content="An interactive prototype of UNO's founder section.">
+  <title>UNO — Services & KMT AI</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23092461'/%3E%3Ccircle cx='32' cy='32' r='21' fill='none' stroke='white' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='10' fill='none' stroke='%234bbaff' stroke-width='5'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #061b50; color: #fff; }
+    .founder {
+      position: relative; isolation: isolate; overflow: hidden;
+      background: radial-gradient(ellipse at 52% 48%, #124998 0%, #092e75 48%, #061b50 100%);
+    }
+    .founder::before {
+      content: ""; position: absolute; inset: 0; z-index: -1;
+      background-image: linear-gradient(#b6d5ff12 1px, transparent 1px), linear-gradient(90deg, #b6d5ff12 1px, transparent 1px);
+      background-size: 4.8vw 4.8vw;
+    }
+    .inner { width: 100%; max-width: 2000px; margin: auto; padding: 5.5vw 3vw 5vw; position: relative; }
+    h1 {
+      margin: 0; position: relative; z-index: 1;
+      font-weight: 900; text-transform: uppercase; letter-spacing: -.065em;
+      text-shadow: 0 0 45px #b8d5ff12;
+    }
+    h1 span { display: block; white-space: nowrap; text-align: center; line-height: .82; }
+    h1 span:nth-child(1) { font-size: clamp(1px, 18.1vw, 362px); }
+    h1 span:nth-child(2) { font-size: clamp(1px, 24.2vw, 484px); margin-top: .6vw; }
+    h1 span:nth-child(3) { font-size: clamp(1px, 29vw, 580px); margin-top: .6vw; }
+    .card-wrap { position: absolute; z-index: 3; width: 24%; left: 10%; top: 47%; }
+    .card { width: 100%; transform: rotate(5deg); transition: transform .3s ease; filter: drop-shadow(0 22px 24px #0006); }
+    .card img { width: 100%; height: auto; display: block; }
+    @media (hover: hover) { .card-wrap:hover .card { transform: rotate(2deg) translateY(-8px); } }
+    @media (max-width: 650px) {
+      .inner { padding-top: 13vw; padding-bottom: 13vw; }
+      .founder::before { background-size: 10vw 10vw; }
+      .card-wrap { width: 27%; left: 7%; top: 48%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .card { transition: none; } .card-wrap:hover .card { transform: rotate(5deg); } }
+
+    /* Light, orbit and perspective establish a scene around the approved art. */
+    body { background: #030d29; }
+    .founder { min-height: 100svh; display: grid; align-items: center; background: radial-gradient(ellipse at 75% 48%, #124edd 0, #082367 36%, #030d29 76%); }
+    .founder::before { background: linear-gradient(115deg, transparent 35%, #307cff0a 48%, transparent 61%); }
+    .inner { isolation: isolate; }
+    .scene { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: -1; }
+    .halo { position: absolute; width: 55vw; height: 55vw; right: -7vw; top: 4%; border-radius: 50%; background: radial-gradient(circle, #4585ff26 0%, #285dff08 52%, transparent 67%); box-shadow: inset 0 0 85px #447dff30, 0 0 110px #285eff24; border: 1px solid #72a7ff45; }
+    .halo::before, .halo::after { content: ''; position: absolute; border-radius: 50%; inset: 9%; border: 1px solid #88b8ff25; }
+    .halo::after { inset: -9%; border-color: #648fff14; }
+    .orbit { position: absolute; width: 69vw; height: 20vw; right: -13%; top: 45%; border: 1px solid #8dbaff66; border-radius: 50%; transform: rotate(-34deg); box-shadow: 0 -2px 16px #528aff25; }
+    .orbit::after { content: ''; position: absolute; width: 7px; height: 7px; top: 22%; left: 7%; background: #d8efff; border-radius: 50%; box-shadow: 0 0 20px 5px #589bff; }
+    .floor { position: absolute; width: 150%; height: 45%; left: -25%; bottom: -24%; background-image: linear-gradient(#73a5ff20 1px, transparent 1px), linear-gradient(90deg, #73a5ff20 1px, transparent 1px); background-size: 65px 65px; transform: perspective(400px) rotateX(58deg); mask-image: linear-gradient(transparent, black); }
+    h1 { text-shadow: 0 10px 50px #0003; }
+    h1 span:nth-child(3) { color: #dceaff; text-shadow: 0 0 70px #70a6ff3d; }
+    .card-wrap { left: auto; right: 8%; top: 38%; width: 29%; perspective: 1000px; animation: float 7s ease-in-out infinite; }
+    .card-wrap::after { content: ''; position: absolute; left: 0; right: -10%; bottom: -9%; height: 12%; background: #02081799; border-radius: 50%; filter: blur(18px); z-index: -1; }
+    .card { transform: rotate(10deg) rotateY(-12deg); filter: drop-shadow(-20px 25px 26px #01051bad) drop-shadow(3px 0 5px #a1cdff38); transition: transform .5s ease, filter .5s ease; }
+    @media (hover: hover) { .card-wrap:hover .card { transform: rotate(3deg) rotateY(0deg) scale(1.06); filter: drop-shadow(-20px 30px 35px #01051bc0) drop-shadow(0 0 10px #b8daff55); } }
+    @keyframes float { 0%,100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+    @media (max-width: 650px) {
+      .founder { min-height: 100svh; }
+      .inner { padding-top: 16vw; padding-bottom: 24vw; }
+      .card-wrap { width: 33%; right: 4%; top: 40%; }
+      .halo { width: 78vw; height: 78vw; right: -18vw; top: 17%; }
+      .orbit { width: 105vw; height: 34vw; right: -35%; top: 46%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .card-wrap { animation: none; } .card { transition: none; } }
+
+    h1 { color: #bc8cff; }
+    h1 span:nth-child(3) { color: #ffffff; text-shadow: 0 0 70px #70a6ff3d; }
+
+    h1 span:nth-child(1), h1 span:nth-child(2) {
+      color: #ad4cf2;
+      background: linear-gradient(100deg, #d63de3 4%, #a64ef2 43%, #587fff 96%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+    }
+  
+.services { --accent:#ba6dff; position:relative; overflow:hidden; padding:64px max(5vw,24px) 48px; background:radial-gradient(ellipse at 75% 48%, #124edd 0, #082367 36%, #030d29 76%); font-family:Arial,sans-serif; }
+.services * {box-sizing:border-box}
+.s-top {display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:3px;color:#a2aec9;text-transform:uppercase}
+.s-top b {font-size:23px;letter-spacing:-1px;color:white}.s-top b i {font-style:normal;color:#b673ff}
+.s-heading {text-align:center;margin:44px 0 12px;font-size:clamp(38px,5vw,76px);line-height:1.04;letter-spacing:-3px;font-weight:700}
+.s-heading em {font-style:normal;background:linear-gradient(100deg,#e050ed,#9870ff,#5c9bff);background-clip:text;color:transparent}
+.s-intro{text-align:center;color:#a4b0cb;font-size:15px;line-height:1.6;margin:0 auto 32px}
+.s-stage {position:relative;max-width:1250px;margin:auto;display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:34px;align-items:center;min-height:445px}
+.s-column{display:grid;gap:16px;position:relative;z-index:2}
+.service-choice {position:relative;text-align:left;color:#e8ebff;background:linear-gradient(110deg,#15214499,#0c143199);border:1px solid #98a7ff22;border-radius:16px;padding:20px;cursor:pointer;transition:background .25s,border-color .25s,transform .25s;min-height:111px;width:100%;font:inherit}
+.service-choice:after{content:'';position:absolute;width:35px;height:1px;background:#8fa4ff30;top:50%;right:-35px}.s-column.right .service-choice:after{right:auto;left:-35px}
+.service-choice:hover,.service-choice[aria-pressed=true]{border-color:#b57bff;background:linear-gradient(110deg,#6133a744,#182448aa);transform:translateY(-3px);box-shadow:0 0 26px #9b52ff16}
+.service-choice[aria-pressed=true]:after{background:#bd80ff;box-shadow:0 0 10px #bf80ff}
+.service-choice:focus-visible{outline:2px solid #80e7ff;outline-offset:4px}
+.s-num{font-size:10px;letter-spacing:2px;color:#ac80eb;display:block;margin-bottom:9px}.service-choice strong{font-size:17px;display:block;letter-spacing:-.3px}.service-choice small{font-size:12px;color:#9eaac5;display:block;margin-top:7px}
+.kmt-stage{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0;isolation:isolate}
+.kmt-ring{position:absolute;width:115%;aspect-ratio:1;border-radius:50%;border:1px solid #ae7cf84a;box-shadow:0 0 65px #9149ff25,inset 0 0 50px #4460ff20;top:8%;z-index:-1}
+.kmt-ring:before,.kmt-ring:after{content:'';position:absolute;inset:8%;border:1px dashed #819fff40;border-radius:50%}.kmt-ring:after{inset:-9%;border-style:solid;border-color:#7698ff12}
+.kmt-portrait{width:118%;max-width:none;mask-image:radial-gradient(ellipse 49% 52% at 50% 48%,black 64%,transparent 100%);mix-blend-mode:lighten;animation:kmt-breathe 6s ease-in-out infinite}
+.kmt-name{position:absolute;bottom:0;left:50%;transform:translateX(-50%);white-space:nowrap;text-align:center;border:1px solid #b081f44d;border-radius:40px;background:#0b1334db;padding:12px 27px;box-shadow:0 0 30px #9c55ff20}.kmt-name b{display:block;letter-spacing:4px;font-size:14px}.kmt-name span{font-size:9px;letter-spacing:2px;color:#94acd5;display:block;margin-top:5px}
+.s-detail{max-width:1250px;margin:32px auto 0;padding:27px 30px;border-top:1px solid #939eff30;display:grid;grid-template-columns:1fr 1.3fr;gap:35px;align-items:center}.s-detail .eyebrow{color:#c18afc;font-size:10px;letter-spacing:2px}.s-detail h3{font-size:25px;margin:9px 0;letter-spacing:-.6px}.s-detail p{color:#b5bfd7;line-height:1.65;font-size:14px;margin:0}.s-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.s-tags span{padding:7px 11px;background:#162144;border:1px solid #859aff20;border-radius:7px;font-size:11px;color:#c9d7f1}
+.s-foot{max-width:1250px;margin:15px auto 0;font-size:10px;letter-spacing:2px;color:#7384a8;display:flex;justify-content:space-between}
+@keyframes kmt-breathe{50%{transform:translateY(-7px)}}
+@media(max-width:750px){.services{padding-top:28px}.s-heading{letter-spacing:-1.6px;margin-top:30px}.s-top{font-size:8px;letter-spacing:1px}.s-stage{grid-template-columns:1fr 1fr;gap:12px}.kmt-stage{grid-column:1/-1;grid-row:1;min-height:290px;max-width:290px;width:100%;margin:auto}.kmt-portrait{width:290px}.kmt-ring{width:270px}.s-column{gap:12px}.service-choice{padding:14px;min-height:120px}.service-choice strong{font-size:14px}.service-choice small{font-size:11px;line-height:1.4}.service-choice:after{display:none}.s-detail{grid-template-columns:1fr;gap:8px;padding:24px 0}.s-foot{font-size:8px;letter-spacing:1px}}
+@media(prefers-reduced-motion:reduce){.kmt-portrait{animation:none}.service-choice{transition:none}}
+
+/* User-authorized logo-blue background preview only. */
+.services, .founder {
+  background:
+    radial-gradient(ellipse 52% 9% at 50% 100%, #52e5ff 0%, #00a8ff 12%, #0065f080 40%, transparent 76%),
+    radial-gradient(ellipse 63% 30% at 50% 105%, #0068ff 0%, #003eac88 46%, transparent 78%),
+    radial-gradient(ellipse 45% 45% at 50% -12%, #006aff 0%, #003a9580 38%, transparent 75%),
+    radial-gradient(ellipse at 50% 48%, #124edd 0%, #082367 57%, #030d29 100%);
+}
+</style>
+</head>
+<body>
+  <main><section class="services" aria-labelledby="services-heading"><div class="s-top"><b>UNO<i> /</i></b><span>Software · Intelligence · Possibility</span><span>01 — SERVICES</span></div><h2 class="s-heading" id="services-heading">Your ambition.<br><em>Our intelligence.</em></h2><p class="s-intro">Eleven capabilities. One connected partner.<br>Select a service to explore what we can build together.</p><div class="s-stage"><div class="s-column"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="0"><span class="s-num">01 /</span><strong>Custom Software</strong><small>Built around your business</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="1"><span class="s-num">02 /</span><strong>Websites & Mobile</strong><small>Experiences people return to</small></button><button class="service-choice" aria-pressed="true" aria-controls="service-detail" data-service="2"><span class="s-num">03 /</span><strong>AI & Automation</strong><small>Less repetition. More possibility.</small></button></div><div class="kmt-stage"><div class="kmt-ring" aria-hidden="true"></div><img class="kmt-portrait" src="./kmt-ai.png" alt="KMT AI, UNO's gold and blue robotic Pharaoh with a glass visor and cyan eyes"><div class="kmt-name"><b>KMT AI</b><span>MEET YOUR DIGITAL ALLY</span></div></div><div class="s-column right"><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="3"><span class="s-num">04 /</span><strong>SaaS Products</strong><small>Software from UNO</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="4"><span class="s-num">05 /</span><strong>Integrations & Cloud</strong><small>Everything working together</small></button><button class="service-choice" aria-pressed="false" aria-controls="service-detail" data-service="5"><span class="s-num">06 /</span><strong>Quality, Security & Data</strong><small>Confidence in every decision</small></button></div></div><div class="s-detail" id="service-detail" aria-live="polite" aria-atomic="true"><div><span class="eyebrow" id="s-category"></span><h3 id="s-title"></h3></div><div><p id="s-description"></p><div class="s-tags" id="s-tags"></div></div></div><div class="s-foot"><span>BUILT FOR YOUR NEXT CHAPTER</span><span>EXPLORE ABOVE ↑</span></div></section>
+    <section class="founder" aria-labelledby="founder-title">
+      <div class="inner">
+        <div class="scene" aria-hidden="true"><div class="halo"></div><div class="orbit"></div><div class="floor"></div></div>
+        <h1 id="founder-title"><span>The mind</span><span>behind</span><span>UNO</span></h1>
+        <div class="card-wrap"><div class="card"><img src="./mustafa-card.png" alt="Mustafa, Founder, depicted as a cartoon robotic Pharaoh on a silver card"></div></div>
+      </div>
+    </section>
+  </main>
+<script>
+const serviceData=[["Custom Software", "Built around your business", "Applications that fit the way you work.", "We design custom web applications, internal systems, and platforms around your team\u2019s processes and your customers\u2019 needs.", ["Web applications", "Internal systems", "Custom platforms"]], ["Websites & Mobile", "Experiences people return to", "Your next idea. On every screen.", "From a distinctive website to a dedicated mobile app, we create clear, useful digital experiences that connect your business with its audience.", ["Website development", "Mobile app development"]], ["AI & Automation", "Less repetition. More possibility.", "Put intelligence to work.", "Connect AI agents, copilots, and AI-powered applications with automated workflows to help your team handle repetitive tasks and focus on meaningful work.", ["AI agents & copilots", "AI-powered applications", "Business workflows"]], ["SaaS Products", "Software from UNO", "Useful software. Ready to subscribe.", "Explore UNO\u2019s own subscription software, designed to address recurring business needs and improve over time.", ["UNO software products", "Subscription access"]], ["Integrations & Cloud", "Everything working together", "Connect your tools. Build your foundation.", "Bring systems together through APIs and integrations, supported by cloud infrastructure and DevOps practices that make software easier to deploy and maintain.", ["Software integrations", "APIs", "Cloud & infrastructure", "DevOps"]], ["Quality, Security & Data", "Confidence in every decision", "Test it. Protect it. Understand it.", "Strengthen your software with quality assurance, automated tests, and cybersecurity services, and turn your business data into useful reporting and analytics.", ["QA & test automation", "Cybersecurity", "Data & analytics"]]];
+function selectService(i){const g=serviceData[i];document.querySelectorAll('[data-service]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.service)===i)));document.getElementById('s-category').textContent=g[0].toUpperCase();document.getElementById('s-title').textContent=g[2];document.getElementById('s-description').textContent=g[3];document.getElementById('s-tags').replaceChildren(...g[4].map(t=>{const x=document.createElement('span');x.textContent=t;return x}));}
+document.querySelectorAll('[data-service]').forEach(b=>b.addEventListener('click',()=>selectService(Number(b.dataset.service))));selectService(2);
+</script></body>
+</html>
