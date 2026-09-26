@@ -168,7 +168,7 @@
 }
 
 .spread {
-  position: relative; z-index: 1; display: grid; grid-template-columns: .78fr 1.22fr;
+  position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr;
   width: 100%; min-height: 560px; border-radius: 38px; overflow: hidden;
 }
 .page { position: relative; padding: 46px 54px; display: flex; }
@@ -233,11 +233,10 @@
 .shot-dots { position: absolute; bottom: 18px; left: 50%; translate: -50% 0; display: flex; gap: 7px; z-index: 2; }
 .shot-dots span { width: 8px; height: 8px; border-radius: 50%; background: #ffffff4d; }
 .shot-dots span.on { background: #fff; }
-.project-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:42px 74px 48px;opacity:0;transform:translateX(28px) scale(.985);pointer-events:none;transition:opacity .35s ease,transform .35s ease;background:radial-gradient(circle at 78% 18%,var(--slide-glow,#3be9ff) 0,transparent 9%),linear-gradient(145deg,#153d9d 0%,#08163f 48%,#040b25 100%)}
+.project-slide{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transform:translateX(28px) scale(.985);pointer-events:none;transition:opacity .35s ease,transform .35s ease;background:linear-gradient(145deg,#111d4f,#071637)}
 .project-slide.on{opacity:1;transform:none;pointer-events:auto}
-.project-slide::before{content:'';position:absolute;inset:0;background:linear-gradient(#7eeeff15 1px,transparent 1px),linear-gradient(90deg,#7eeeff15 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#0008,transparent 76%)}
-.project-slide::after{content:'';position:absolute;width:48%;aspect-ratio:1;right:8%;top:9%;border-radius:32%;border:1px solid #83efff55;transform:rotate(10deg);box-shadow:inset 0 0 55px #4f65ff32,0 0 70px #2edfff1e;background:linear-gradient(135deg,#ffffff18,#ffffff03)}
-.slide-kicker,.slide-title,.slide-copy{position:relative;z-index:1}.slide-kicker{color:#70efff;font:800 11px Arial;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:10px}.slide-title{margin:0 0 12px;font:900 clamp(27px,3vw,48px)/1 Arial;color:#fff;letter-spacing:-1.4px;max-width:620px}.slide-copy{margin:0;max-width:620px;color:#c5d6ff;font:500 14px/1.6 Arial}.shot-count{top:20px;right:22px}.shot-arrow{background:#06143de6;border-color:#77efff66;box-shadow:0 8px 22px #00082f77}.shot-dots span{width:28px;height:4px;border-radius:4px}.shot-dots span.on{background:linear-gradient(90deg,#4ceaff,#ae5dff);box-shadow:0 0 12px #53ddff}
+.project-slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.project-image-placeholder{position:relative;z-index:1;text-align:center;color:#a9baf0;font:800 13px/1.6 Arial;letter-spacing:1.8px;text-transform:uppercase}.project-image-placeholder span{display:block;margin-top:8px;color:#6f83c4;font-size:10px;letter-spacing:.8px}.shot-count{top:20px;right:22px}.shot-arrow{background:#06143de6;border-color:#77efff66;box-shadow:0 8px 22px #00082f77}.shot-dots span{width:28px;height:4px;border-radius:4px}.shot-dots span.on{background:linear-gradient(90deg,#4ceaff,#ae5dff);box-shadow:0 0 12px #53ddff}
 
 @media (max-width: 900px) {
   .spread { grid-template-columns: 1fr; }
@@ -596,7 +595,7 @@ function selectService(i) {
   pickerCards.forEach((c, ci) => c.classList.toggle('active', ci === i));
   bookHeadline.textContent = s.title;
   bookDesc.textContent = s.desc;
-  projectSlides.innerHTML = s.slides.map((slide, si) => `<article class="project-slide${si === 0 ? ' on' : ''}" style="--slide-glow:${si ? '#9c5cff' : '#25e9ff'}"><div class="slide-kicker">${s.title} · Slide ${si + 1}</div><h3 class="slide-title">${slide[0]}</h3><p class="slide-copy">${slide[1]}</p></article>`).join('');
+  projectSlides.innerHTML = s.slides.map((slide, si) => `<article class="project-slide${si === 0 ? ' on' : ''}"><div class="project-image-placeholder">Project image ${si + 1}<span>Add the real ${s.title} project image here</span></div></article>`).join('');
   solutionLink.href = `./solutions.html?service=${s.slug}`;
   showSlide(0);
 }
