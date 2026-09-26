@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#061b50">
+<title>UNO Solutions — Software, AI & Automation</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#04143e;color:#fff;font-family:Arial,Helvetica,sans-serif;background-image:radial-gradient(circle at 82% 12%,#225cff80,transparent 25%),radial-gradient(circle at 16% 72%,#802bce55,transparent 28%),linear-gradient(145deg,#082d82,#04133d 58%,#020923)}
+nav{position:sticky;top:14px;z-index:20;width:calc(100% - 48px);height:68px;margin:14px 24px 0;border:1px solid #a8eaff5e;border-radius:24px;background:#061948d9;backdrop-filter:blur(20px);display:flex;align-items:center;padding:7px 18px 7px 24px;box-shadow:0 14px 34px #00103975,inset 0 1px 0 #fff3}
+nav img{width:170px;display:block}nav .links{margin-left:auto;display:flex;align-items:center;gap:8px}nav a{color:#e8f3ff;text-decoration:none;font-weight:700;font-size:13px;padding:13px 16px;border-radius:13px}nav a:hover,nav a.active{background:#ffffff13;color:#64efff}.talk{background:linear-gradient(110deg,#6b50ff,#0784ef 58%,#08c9d9)!important;border:1px solid #8ff4ff55}
+.hero{max-width:1250px;margin:0 auto;padding:110px 32px 74px}.eyebrow{color:#5defff;font-size:12px;font-weight:900;letter-spacing:3px;text-transform:uppercase}.hero h1{font-size:clamp(50px,8vw,108px);line-height:.88;letter-spacing:-6px;margin:18px 0 24px;max-width:950px}.hero h1 span{background:linear-gradient(100deg,#5eeeff,#7771ff,#e45cf0);background-clip:text;color:transparent}.hero>p{color:#bfd0f5;font-size:19px;line-height:1.7;max-width:700px}.solution-grid{max-width:1250px;margin:0 auto;padding:0 32px 100px;display:grid;grid-template-columns:repeat(2,1fr);gap:24px}.solution{position:relative;overflow:hidden;min-height:350px;padding:38px;border-radius:30px;border:1px solid #7beaff45;background:linear-gradient(145deg,#123a8ddd,#071744ec);box-shadow:0 24px 48px #000a,inset 0 1px 0 #ffffff2b;scroll-margin-top:110px}.solution::before{content:'';position:absolute;width:230px;height:230px;border:1px solid #73ecff35;border-radius:38%;right:-55px;top:-60px;transform:rotate(18deg);box-shadow:inset 0 0 55px #5e5bff30}.solution:nth-child(3n+2)::before{border-radius:50%;border-color:#bd61ff55}.solution:nth-child(3n)::before{transform:rotate(45deg);border-color:#62ffd055}.num{font-size:11px;letter-spacing:2px;color:#6ceeff;font-weight:900}.solution h2{font-size:clamp(27px,3vw,43px);line-height:1;margin:56px 0 16px;letter-spacing:-1.5px}.solution p{color:#bbcaee;line-height:1.65;max-width:520px;margin:0 0 26px}.features{display:flex;flex-wrap:wrap;gap:9px}.features span{padding:8px 11px;border-radius:999px;background:#ffffff0c;border:1px solid #ffffff1e;color:#d7e5ff;font-size:11px;font-weight:700}.solution.selected{border-color:#5ff5ff;box-shadow:0 0 0 2px #5ff5ff33,0 28px 58px #000b,0 0 45px #2cdfff2c}.back{display:inline-flex;margin-top:26px;color:#fff;background:linear-gradient(100deg,#8c52ff,#127be9,#10cbdc);padding:15px 22px;border-radius:999px;text-decoration:none;font-weight:800;font-size:13px}
+footer{border-top:1px solid #ffffff20;padding:28px 32px;text-align:center;color:#90a4d5;font-size:12px}
+@media(max-width:800px){nav{width:calc(100% - 20px);margin:10px;height:64px;padding:7px 10px}nav img{width:135px}nav .links a:not(.active):not(.talk){display:none}.hero{padding:85px 22px 52px}.hero h1{letter-spacing:-3px}.solution-grid{grid-template-columns:1fr;padding:0 18px 70px}.solution{min-height:310px;padding:28px}}
+</style>
+</head>
+<body>
+<nav><a href="./index.html" aria-label="UNO home"><img src="./uno-logo-transparent.png" alt="UNO — Empowering Innovation"></a><div class="links"><a href="./index.html#services-heading">Services</a><a class="active" href="./solutions.html">Solutions</a><a href="./index.html#founder-title">About</a><a class="talk" href="./index.html#site-footer">Let's talk</a></div></nav>
+<header class="hero"><div class="eyebrow">UNO Solutions</div><h1>Real systems for <span>real progress.</span></h1><p>Explore how UNO combines product design, software engineering, AI, automation, and reliable infrastructure to solve practical business problems.</p><a class="back" href="./index.html#services-heading">← Back to service showcase</a></header>
+<main class="solution-grid" id="solutions"></main>
+<footer>© 2026 UNO Software &amp; AI Company · Dubai, UAE</footer>
+<script>
+const solutions=[
+['custom-software','Custom Software','Internal systems and bespoke platforms designed around your operations.',['Operations','Portals','Dashboards']],
+['saas-products','SaaS Products','Subscription products with onboarding, billing, analytics, and room to scale.',['Product UX','Subscriptions','Growth']],
+['ai-solutions','AI Solutions','Agents, copilots, and AI-powered applications that help teams act faster.',['AI Agents','Copilots','Knowledge']],
+['business-automation','Business Automation','Reliable workflows that remove repetitive work and expose every exception.',['Workflows','Approvals','Reporting']],
+['website-development','Website Development','Distinctive, fast websites that build trust and generate qualified enquiries.',['Responsive','Conversion','CMS']],
+['mobile-app-development','Mobile App Development','Useful mobile products that connect customers, teams, and live business data.',['iOS','Android','Notifications']],
+['software-integrations','Software Integrations / APIs','Secure connections that keep tools and information working together.',['APIs','Data Sync','Monitoring']],
+['cloud-devops','Cloud / Infrastructure / DevOps','Secure infrastructure and automated delivery for dependable growth.',['Cloud','CI/CD','Reliability']],
+['qa-automation','QA / Test Automation','Continuous testing that protects the customer experience with every release.',['Coverage','Regression','Release QA']],
+['cybersecurity','Cybersecurity','Practical protection across applications, infrastructure, access, and data.',['Assessment','Monitoring','Response']],
+['data-analytics','Data / Analytics','Clear dashboards and useful analysis built from scattered business information.',['Dashboards','Forecasting','Insights']]
+];
+const selected=new URLSearchParams(location.search).get('service');
+const root=document.getElementById('solutions');
+root.innerHTML=solutions.map((s,i)=>`<article class="solution${s[0]===selected?' selected':''}" id="${s[0]}"><div class="num">SOLUTION ${String(i+1).padStart(2,'0')}</div><h2>${s[1]}</h2><p>${s[2]}</p><div class="features">${s[3].map(f=>`<span>${f}</span>`).join('')}</div></article>`).join('');
+if(selected){requestAnimationFrame(()=>document.getElementById(selected)?.scrollIntoView({behavior:'smooth',block:'center'}));}
+</script>
+</body></html>

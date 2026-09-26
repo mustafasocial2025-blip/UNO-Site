@@ -168,12 +168,12 @@
 }
 
 .spread {
-  position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr;
-  width: 100%; min-height: 480px; border-radius: 38px; overflow: hidden;
+  position: relative; z-index: 1; display: grid; grid-template-columns: .78fr 1.22fr;
+  width: 100%; min-height: 560px; border-radius: 38px; overflow: hidden;
 }
 .page { position: relative; padding: 46px 54px; display: flex; }
 .page.left { flex-direction: column; justify-content: center; }
-.page.right { align-items: center; }
+.page.right { align-items: center; padding: 28px; }
 
 .spread::before {
   content: ''; position: absolute; left: 50%; top: 4%; bottom: 4%; width: 64px; transform: translateX(-50%);
@@ -190,12 +190,13 @@
   font: 900 clamp(34px,5vw,76px)/.95 Arial; letter-spacing: -2px; text-transform: uppercase;
 }
 .book-desc { position: relative; z-index: 1; color: #c3ccec; font-size: clamp(14px,1.1vw,17px); line-height: 1.65; max-width: 480px; margin: 0 0 34px; }
-.book-cta { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #1a2c7c; font: 800 13px/1 Arial; letter-spacing: .5px; padding: 17px 28px; border-radius: 999px; border: 0; cursor: pointer; width: fit-content; text-transform: uppercase; }
+.book-cta { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #1a2c7c; font: 800 13px/1 Arial; letter-spacing: .5px; padding: 17px 28px; border-radius: 999px; border: 0; cursor: pointer; width: fit-content; text-transform: uppercase; text-decoration:none; box-shadow:0 12px 28px #03124266; transition:transform .2s,box-shadow .2s; }
+.book-cta:hover{transform:translateY(-2px);box-shadow:0 16px 34px #03124288,0 0 20px var(--accent-glow)}
 
 .book-imgs { position: relative; z-index: 1; width: 100%; height: 100%; }
 .img-card {
-  position: relative; width: 100%; height: 100%; min-height: 420px;
-  border-radius: 20px; overflow: hidden; background: #0b1230cc; border: 1px solid #ffffff20;
+  position: relative; width: 100%; height: 100%; min-height: 504px;
+  border-radius: 26px; overflow: hidden; background: #0b1230cc; border: 1px solid #ffffff36; box-shadow:0 24px 55px #00113f70,inset 0 1px 0 #ffffff2e;
 }
 .kmt-stage { position:absolute; inset:0; overflow:hidden; background:radial-gradient(circle at 50% 34%,#0d54c9 0%,#071b55 44%,#030a27 100%); }
 .kmt-stage::before { content:''; position:absolute; inset:0; z-index:0; pointer-events:none; background:radial-gradient(circle at 50% 48%,transparent 20%,#0207198c 100%),linear-gradient(120deg,#2d83ff24,transparent 38%,#915bff1f); }
@@ -232,10 +233,16 @@
 .shot-dots { position: absolute; bottom: 18px; left: 50%; translate: -50% 0; display: flex; gap: 7px; z-index: 2; }
 .shot-dots span { width: 8px; height: 8px; border-radius: 50%; background: #ffffff4d; }
 .shot-dots span.on { background: #fff; }
+.project-slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:42px 74px 48px;opacity:0;transform:translateX(28px) scale(.985);pointer-events:none;transition:opacity .35s ease,transform .35s ease;background:radial-gradient(circle at 78% 18%,var(--slide-glow,#3be9ff) 0,transparent 9%),linear-gradient(145deg,#153d9d 0%,#08163f 48%,#040b25 100%)}
+.project-slide.on{opacity:1;transform:none;pointer-events:auto}
+.project-slide::before{content:'';position:absolute;inset:0;background:linear-gradient(#7eeeff15 1px,transparent 1px),linear-gradient(90deg,#7eeeff15 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#0008,transparent 76%)}
+.project-slide::after{content:'';position:absolute;width:48%;aspect-ratio:1;right:8%;top:9%;border-radius:32%;border:1px solid #83efff55;transform:rotate(10deg);box-shadow:inset 0 0 55px #4f65ff32,0 0 70px #2edfff1e;background:linear-gradient(135deg,#ffffff18,#ffffff03)}
+.slide-kicker,.slide-title,.slide-copy{position:relative;z-index:1}.slide-kicker{color:#70efff;font:800 11px Arial;letter-spacing:2.2px;text-transform:uppercase;margin-bottom:10px}.slide-title{margin:0 0 12px;font:900 clamp(27px,3vw,48px)/1 Arial;color:#fff;letter-spacing:-1.4px;max-width:620px}.slide-copy{margin:0;max-width:620px;color:#c5d6ff;font:500 14px/1.6 Arial}.shot-count{top:20px;right:22px}.shot-arrow{background:#06143de6;border-color:#77efff66;box-shadow:0 8px 22px #00082f77}.shot-dots span{width:28px;height:4px;border-radius:4px}.shot-dots span.on{background:linear-gradient(90deg,#4ceaff,#ae5dff);box-shadow:0 0 12px #53ddff}
 
 @media (max-width: 900px) {
   .spread { grid-template-columns: 1fr; }
   .spread::before, .spread::after { display: none; }
+  .page.right{padding:24px}.img-card{min-height:460px}
 }
 @media (max-width: 750px) {
   .services { padding-top: 28px; }
@@ -406,7 +413,7 @@
 </style>
 </head>
 <body>
-  <main><section class="uno-hero" aria-labelledby="hero-heading"><nav class="hero-nav" aria-label="Main navigation"><a class="hero-logo" href="#hero-heading" aria-label="UNO home"><img src="./uno-logo-transparent.png" alt="UNO — Empowering Innovation"></a><div class="hero-links"><a href="#services-heading">Services</a><button class="hero-work" type="button" data-work>Our Work</button><a class="hero-about" href="#founder-title">About</a><button class="hero-contact-link" type="button" data-contact>Contact</button><button type="button" data-contact>Let’s talk</button></div></nav><div class="hero-main"><div class="hero-copy"><p class="hero-kicker">SOFTWARE &amp; AI COMPANY</p><h2 class="hero-title" id="hero-heading">Your next big idea.<em>Built with UNO.</em></h2><p class="hero-description">Custom software, AI and automation that turn ambitious ideas into useful digital experiences.</p><div class="hero-actions"><button type="button" data-contact>Discuss your project&nbsp; →</button><a href="#services-heading">Explore services</a></div></div><img class="hero-art" src="./hero-target.png" alt="A polished silver target with a cyan dart hitting its glowing center"></div></section><dialog class="hero-contact"><h2>Let’s talk about your project</h2><p>UNO’s contact details will be available here soon.</p><form method="dialog"><button>Close</button></form></dialog><section class="services" aria-labelledby="services-heading">
+  <main><section class="uno-hero" aria-labelledby="hero-heading"><nav class="hero-nav" aria-label="Main navigation"><a class="hero-logo" href="#hero-heading" aria-label="UNO home"><img src="./uno-logo-transparent.png" alt="UNO — Empowering Innovation"></a><div class="hero-links"><a href="#services-heading">Services</a><a href="./solutions.html">Solutions</a><button class="hero-work" type="button" data-work>Our Work</button><a class="hero-about" href="#founder-title">About</a><button class="hero-contact-link" type="button" data-contact>Contact</button><button type="button" data-contact>Let’s talk</button></div></nav><div class="hero-main"><div class="hero-copy"><p class="hero-kicker">SOFTWARE &amp; AI COMPANY</p><h2 class="hero-title" id="hero-heading">Your next big idea.<em>Built with UNO.</em></h2><p class="hero-description">Custom software, AI and automation that turn ambitious ideas into useful digital experiences.</p><div class="hero-actions"><button type="button" data-contact>Discuss your project&nbsp; →</button><a href="#services-heading">Explore services</a></div></div><img class="hero-art" src="./hero-target.png" alt="A polished silver target with a cyan dart hitting its glowing center"></div></section><dialog class="hero-contact"><h2>Let’s talk about your project</h2><p>UNO’s contact details will be available here soon.</p><form method="dialog"><button>Close</button></form></dialog><section class="services" aria-labelledby="services-heading">
 
     <div class="services-head">
       <h2 class="services-word" id="services-heading">SERVICES</h2>
@@ -426,13 +433,17 @@
         <div class="page left">
           <h2 class="book-headline" id="book-headline"></h2>
           <p class="book-desc" id="book-desc"></p>
-          <button class="book-cta" type="button" data-contact>Explore This Service →</button>
+          <a class="book-cta" id="solution-link" href="./solutions.html">Explore The Real Solution →</a>
         </div>
 
         <div class="page right">
           <div class="book-imgs">
             <div class="img-card" id="img-card">
-              <div class="project-placeholder">Project images<span>Add your work here</span></div>
+              <div id="project-slides"></div>
+              <div class="shot-count" id="shot-count">1 / 2</div>
+              <button class="shot-arrow prev" id="shot-prev" type="button" aria-label="Previous project slide">‹</button>
+              <button class="shot-arrow next" id="shot-next" type="button" aria-label="Next project slide">›</button>
+              <div class="shot-dots" aria-hidden="true"><span class="on"></span><span></span></div>
               <div class="kmt-stage" id="kmt-stage" role="img" aria-label="Interactive 3D KMT AI robotic Pharaoh">
                 <img class="kmt-reference-image" src="./kmt-fullbody-v1.png" alt="Full-body KMT AI robotic Pharaoh">
                 <img class="kmt-reference-image kmt-head-layer" src="./kmt-fullbody-v1.png" alt="">
@@ -542,17 +553,17 @@
 <script>
 // 11 individual services, de-duplicated (Custom Software's scope excludes web/mobile, which are their own entries)
 const services = [
-  { title: 'Custom Software', desc: 'Internal systems and bespoke business platforms.' },
-  { title: 'SaaS Products', desc: 'Our own software that customers subscribe to.' },
-  { title: 'AI Solutions', desc: 'AI agents, copilots, and AI-powered applications.' },
-  { title: 'Business Automation', desc: 'Automate repetitive business processes and workflows.' },
-  { title: 'Website Development', desc: '(Description not yet provided)' },
-  { title: 'Mobile App Development', desc: '(Description not yet provided)' },
-  { title: 'Software Integrations / APIs', desc: '(Description not yet provided)' },
-  { title: 'Cloud / Infrastructure / DevOps', desc: '(Description not yet provided)' },
-  { title: 'QA / Test Automation', desc: '(Description not yet provided)' },
-  { title: 'Cybersecurity', desc: '(Description not yet provided)' },
-  { title: 'Data / Analytics', desc: '(Description not yet provided)' }
+  { slug:'custom-software', title:'Custom Software', desc:'Internal systems and bespoke business platforms.', slides:[['Business Platform','One connected workspace for your people, customers, and daily operations.'],['Live Operations','Dashboards and workflows built around the way your business actually works.']] },
+  { slug:'saas-products', title:'SaaS Products', desc:'Our own software that customers subscribe to.', slides:[['Product Experience','A polished subscription product designed to grow with every new customer.'],['Scale & Retention','Billing, onboarding, analytics, and engagement in one dependable platform.']] },
+  { slug:'ai-solutions', title:'AI Solutions', desc:'AI agents, copilots, and AI-powered applications.', slides:[['Intelligent Agent','An AI teammate that understands requests, takes action, and stays available 24/7.'],['Human + AI Workspace','A clear control center where your team reviews, guides, and improves every result.']] },
+  { slug:'business-automation', title:'Business Automation', desc:'Automate repetitive business processes and workflows.', slides:[['Workflow Control','Turn repetitive steps into a fast, visible, and reliable automated flow.'],['Automation Results','Track time saved, tasks completed, and exceptions that need human attention.']] },
+  { slug:'website-development', title:'Website Development', desc:'Fast, distinctive websites built for conversion.', slides:[['Digital First Impression','A responsive experience that makes your company look credible from the first second.'],['Conversion Journey','Focused pages and calls to action that turn visits into qualified enquiries.']] },
+  { slug:'mobile-app-development', title:'Mobile App Development', desc:'Useful mobile products for customers and teams.', slides:[['Mobile Experience','Fast, intuitive screens shaped around the moments your users care about.'],['Connected Product','Notifications, accounts, payments, and live data working as one experience.']] },
+  { slug:'software-integrations', title:'Software Integrations / APIs', desc:'Connect tools, data, and services without friction.', slides:[['Connected Systems','Your existing tools exchange the right data automatically and securely.'],['API Command Center','A clear view of integrations, activity, health, and exceptions.']] },
+  { slug:'cloud-devops', title:'Cloud / Infrastructure / DevOps', desc:'Reliable infrastructure that supports confident growth.', slides:[['Cloud Foundation','Secure, scalable environments designed for performance and resilience.'],['Release Pipeline','Automated testing and deployment for safer, faster product releases.']] },
+  { slug:'qa-automation', title:'QA / Test Automation', desc:'Protect quality with repeatable automated testing.', slides:[['Quality Coverage','Critical customer journeys tested continuously across every release.'],['Release Confidence','See failures, risks, and readiness before software reaches customers.']] },
+  { slug:'cybersecurity', title:'Cybersecurity', desc:'Reduce risk across applications, infrastructure, and data.', slides:[['Security Posture','A practical view of vulnerabilities, access, and priority actions.'],['Active Protection','Monitoring and response workflows that help keep the business protected.']] },
+  { slug:'data-analytics', title:'Data / Analytics', desc:'Turn scattered business data into clear decisions.', slides:[['Decision Dashboard','The numbers that matter, brought together in one understandable view.'],['Insight Engine','Spot patterns, forecast performance, and act on opportunities sooner.']] }
 ];
 
 const pickerRow = document.getElementById('picker-row');
@@ -567,12 +578,31 @@ const pickerCards = pickerRow.querySelectorAll('.picker-card');
 
 const bookHeadline = document.getElementById('book-headline');
 const bookDesc = document.getElementById('book-desc');
+const projectSlides = document.getElementById('project-slides');
+const shotCount = document.getElementById('shot-count');
+const shotDots = document.querySelectorAll('.shot-dots span');
+const solutionLink = document.getElementById('solution-link');
+let selectedService = 0;
+let selectedSlide = 0;
+function showSlide(i) {
+  selectedSlide = (i + 2) % 2;
+  projectSlides.querySelectorAll('.project-slide').forEach((slide, si) => slide.classList.toggle('on', si === selectedSlide));
+  shotDots.forEach((dot, di) => dot.classList.toggle('on', di === selectedSlide));
+  shotCount.textContent = `${selectedSlide + 1} / 2`;
+}
 function selectService(i) {
   const s = services[i];
+  selectedService = i;
   pickerCards.forEach((c, ci) => c.classList.toggle('active', ci === i));
   bookHeadline.textContent = s.title;
   bookDesc.textContent = s.desc;
+  projectSlides.innerHTML = s.slides.map((slide, si) => `<article class="project-slide${si === 0 ? ' on' : ''}" style="--slide-glow:${si ? '#9c5cff' : '#25e9ff'}"><div class="slide-kicker">${s.title} · Slide ${si + 1}</div><h3 class="slide-title">${slide[0]}</h3><p class="slide-copy">${slide[1]}</p></article>`).join('');
+  solutionLink.href = `./solutions.html?service=${s.slug}`;
+  showSlide(0);
 }
+
+document.getElementById('shot-prev').addEventListener('click', () => showSlide(selectedSlide - 1));
+document.getElementById('shot-next').addEventListener('click', () => showSlide(selectedSlide + 1));
 
 const pickerPrev = document.getElementById('picker-prev');
 const pickerNext = document.getElementById('picker-next');
